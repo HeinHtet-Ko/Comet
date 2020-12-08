@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.appcompat.widget.SearchView
+
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hapticFeedbackEnabled="true"
+        android:background="@drawable/search_background"
+        android:layout_margin="25dp"
+        android:paddingStart="3dp"
+        android:paddingBottom="5dp"
+        android:padding="10dp"
+        app:defaultQueryHint="Search "
+        app:iconifiedByDefault="true"
+        android:id="@+id/media_search_view"
+        >
+
+
+    </androidx.appcompat.widget.SearchView>
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:layout_below="@id/media_search_view"
+        android:id="@+id/media_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        <com.google.android.material.tabs.TabLayout
+
+            app:tabMode="fixed"
+            android:id="@+id/media_tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </com.google.android.material.tabs.TabLayout>
+    </androidx.viewpager.widget.ViewPager>
+
+</RelativeLayout>

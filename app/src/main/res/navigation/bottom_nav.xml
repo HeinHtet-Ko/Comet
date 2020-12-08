@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/bottom_nav"
+    app:startDestination="@id/movie_menu">
+
+    <fragment
+        android:id="@+id/movie_menu"
+        android:name="com.mtu.ceit.hhk.comet.ui.fragments.MovieFragment"
+        android:label="MovieFragment" />
+    <fragment
+        android:id="@+id/tv_menu"
+        android:name="com.mtu.ceit.hhk.comet.ui.fragments.TVFragment"
+        android:label="TVFragment" />
+    <fragment
+        android:id="@+id/search_menu"
+        android:name="com.mtu.ceit.hhk.comet.ui.fragments.SearchFragment"
+        android:label="SearchFragment" />
+</navigation>
