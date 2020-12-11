@@ -1,4 +1,4 @@
-package com.mtu.ceit.hhk.comet.ui
+package com.mtu.ceit.hhk.comet.ui.viewmodels
 
 import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
@@ -18,19 +18,19 @@ import com.mtu.ceit.hhk.comet.utils.Resource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
-class MainViewModel @ViewModelInject constructor(private val repos:MovieRepository,private val mediaRepos:MediaSearchRepository):ViewModel() {
+class MainViewModel @ViewModelInject constructor(private val repos:MovieRepository):ViewModel() {
 
 
     var nowPlayingMovs:MutableStateFlow<Resource<MovieResponse>> = MutableStateFlow(Resource.EMPTY)
 
     var upComingMovs:MutableStateFlow<Resource<MovieResponse>> = MutableStateFlow(Resource.EMPTY)
-    var pagers: LiveData<PagingData<Movie>> = MutableLiveData()
-  //  var nowPlaying:MutableLiveData<Resource<MovieResponse>> = MutableLiveData(Resource.EMPTY)
+
+
 
     init {
         getNowMovies()
         getComingMovies()
-        Log.d("INIT", "View Model Created: ")
+
 
     }
 
@@ -66,12 +66,6 @@ class MainViewModel @ViewModelInject constructor(private val repos:MovieReposito
         }
     }
 
-    fun searchMovies(query:String){
-        Log.d("flatmap", " main search change ")
-       pagers =  mediaRepos.fetchMovieSearch(query).cachedIn(viewModelScope)
-
-
-    }
 
 
 

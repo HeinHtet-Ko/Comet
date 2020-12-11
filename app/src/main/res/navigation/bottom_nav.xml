@@ -5,14 +5,14 @@
 
     <fragment
         android:id="@+id/movie_menu"
-        android:name="com.mtu.ceit.hhk.comet.ui.fragments.MovieFragment"
+        android:name="com.mtu.ceit.hhk.comet.ui.fragments.main_fragments.MovieFragment"
         android:label="MovieFragment" />
     <fragment
         android:id="@+id/tv_menu"
-        android:name="com.mtu.ceit.hhk.comet.ui.fragments.TVFragment"
+        android:name="com.mtu.ceit.hhk.comet.ui.fragments.main_fragments.TVFragment"
         android:label="TVFragment" />
     <fragment
         android:id="@+id/search_menu"
-        android:name="com.mtu.ceit.hhk.comet.ui.fragments.SearchFragment"
+        android:name="com.mtu.ceit.hhk.comet.ui.fragments.main_fragments.SearchFragment"
         android:label="SearchFragment" />
 </navigation>

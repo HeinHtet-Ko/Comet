@@ -1,4 +1,4 @@
-package com.mtu.ceit.hhk.comet
+package com.mtu.ceit.hhk.comet.paging_sources
 
 import android.util.Log
 import androidx.paging.PagingSource
@@ -7,12 +7,12 @@ import com.mtu.ceit.hhk.comet.network.TMDB_API
 import retrofit2.HttpException
 import java.io.IOException
 
-private const val START_PAGE_INDEX = 1
 
-class SearchMediaPagingSource(private val api:TMDB_API,private val query:String): PagingSource<Int, Movie>() {
+
+class SearchMoviePagingSource(private val api:TMDB_API,private val query:String): PagingSource<Int, Movie>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
 
-        val position = params.key ?: START_PAGE_INDEX
+        val position = params.key ?: 1
         Log.d("flatmap", " main load change ")
 
         return try {
@@ -24,7 +24,7 @@ class SearchMediaPagingSource(private val api:TMDB_API,private val query:String)
 
             LoadResult.Page(
                     data = movResponse.movies,
-                    prevKey = if(position== START_PAGE_INDEX) null else position-1,
+                    prevKey = if(position== 1) null else position-1,
                     nextKey = if(movList.isEmpty()) null else position+1
 
             )

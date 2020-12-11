@@ -1,24 +1,20 @@
-package com.mtu.ceit.hhk.comet.ui.fragments
+package com.mtu.ceit.hhk.comet.ui.fragments.main_fragments
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.navGraphViewModels
 import com.mtu.ceit.hhk.comet.R
 import com.mtu.ceit.hhk.comet.databinding.FragmentMovieBinding
+import com.mtu.ceit.hhk.comet.ui.MovieDetailActivity
 
-import com.mtu.ceit.hhk.comet.ui.MainViewModel
-import com.mtu.ceit.hhk.comet.ui.NowMovieAdapter
+import com.mtu.ceit.hhk.comet.ui.viewmodels.MainViewModel
+import com.mtu.ceit.hhk.comet.ui.adapters.NowMovieAdapter
+import com.mtu.ceit.hhk.comet.utils.DiffUtilDifferentiators
 
-import com.mtu.ceit.hhk.comet.utils.DiffUtilCallBack
 import com.mtu.ceit.hhk.comet.utils.OnMovieItemClickListener
 import com.mtu.ceit.hhk.comet.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,14 +27,14 @@ class MovieFragment:Fragment(R.layout.fragment_movie),OnMovieItemClickListener {
 
 
 
-//    private val mainVM by navGraphViewModels<MainViewModel>(R.id.bottom_nav){
-//        defaultViewModelProviderFactory
-//    }
-private val mainVM by viewModels<MainViewModel>()
+    private val mainVM by navGraphViewModels<MainViewModel>(R.id.bottom_nav){
+        defaultViewModelProviderFactory
+    }
+
     private var _binding:FragmentMovieBinding ? = null
     private val binding get() = _binding!!
-    private lateinit var _adapter:NowMovieAdapter
-    private lateinit var _upComingAdapter:NowMovieAdapter
+    private lateinit var _adapter: NowMovieAdapter
+    private lateinit var _upComingAdapter: NowMovieAdapter
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -60,8 +56,8 @@ private val mainVM by viewModels<MainViewModel>()
     private fun recyclerSetup(){
 
 
-        _adapter = NowMovieAdapter(DiffUtilCallBack,this)
-        _upComingAdapter = NowMovieAdapter(DiffUtilCallBack,this)
+        _adapter = NowMovieAdapter(DiffUtilDifferentiators.MovieDifferentiator,this)
+        _upComingAdapter = NowMovieAdapter(DiffUtilDifferentiators.MovieDifferentiator,this)
         binding.nowPlayingRecycler.adapter = _adapter
         binding.upComingRecycler.adapter = _upComingAdapter
     }
@@ -124,7 +120,8 @@ private val mainVM by viewModels<MainViewModel>()
     }
 
     override fun onMovieItemClick(movieID: Int) {
-        Toast.makeText(context,movieID.toString(),Toast.LENGTH_LONG).show()
+        val intent = MovieDetailActivity.navigate(requireContext(),movieID)
+        startActivity(intent)
     }
 
 }

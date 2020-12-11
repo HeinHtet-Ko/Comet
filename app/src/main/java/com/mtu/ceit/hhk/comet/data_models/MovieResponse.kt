@@ -22,6 +22,22 @@ data class Movie(
     val title: String,
     @Expose
     val vote_average: Float
-
-
+)
+data class DetailedMovie(
+    @Expose
+    val id:Int,
+    @Expose
+    val title:String,
+    @Expose
+    val overview:String,
+    @Expose
+    val vote_count:Int,
+    @Expose
+    val vote_average: Float,
+    @Expose
+    val poster_path: String,
+    @Expose
+    val backdrop_path:String,
+    @Expose
+    val release_date: String
 )

@@ -11,8 +11,8 @@ package com.mtu.ceit.hhk.comet.ui.fragments.base
 //import androidx.paging.PagingData
 //import androidx.viewbinding.ViewBinding
 //import com.mtu.ceit.hhk.comet.data_models.Movie
-//import com.mtu.ceit.hhk.comet.ui.MainViewModel
-//import com.mtu.ceit.hhk.comet.ui.MediaSearchViewModel
+//import com.mtu.ceit.hhk.comet.ui.viewmodels.MainViewModel
+//import com.mtu.ceit.hhk.comet.ui.viewmodels.MediaSearchViewModel
 //
 //abstract class BaseFragment():Fragment() {
 //

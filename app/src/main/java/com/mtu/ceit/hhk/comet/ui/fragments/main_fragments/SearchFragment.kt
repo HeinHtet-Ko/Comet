@@ -1,13 +1,14 @@
-package com.mtu.ceit.hhk.comet.ui.fragments
+package com.mtu.ceit.hhk.comet.ui.fragments.main_fragments
 
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import com.mtu.ceit.hhk.comet.R
 import com.mtu.ceit.hhk.comet.databinding.FragmentSearchBinding
-import com.mtu.ceit.hhk.comet.ui.MediaSearchViewModel
+import com.mtu.ceit.hhk.comet.ui.MainActivity
+import com.mtu.ceit.hhk.comet.ui.viewmodels.MediaSearchViewModel
+import com.mtu.ceit.hhk.comet.ui.fragments.SearchPagerAdapter
 import com.mtu.ceit.hhk.comet.ui.fragments.search_pagers.MovieSearchPager
 import com.mtu.ceit.hhk.comet.ui.fragments.search_pagers.TVSearchPager
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,8 +22,8 @@ class SearchFragment:Fragment(R.layout.fragment_search) {
     private val movFragment = MovieSearchPager()
     private val tvFragment  = TVSearchPager()
     private lateinit var searchPagerAdapter: SearchPagerAdapter
-    private val searchVM:MediaSearchViewModel by viewModels()
-
+   //private val searchVM:MediaSearchViewModel by viewModels()
+   private lateinit var searchVM: MediaSearchViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
@@ -30,14 +31,27 @@ class SearchFragment:Fragment(R.layout.fragment_search) {
         setUpPager()
         listenSearchQuery()
 
+        searchVM = (activity as MainActivity).mainSearchVM
+
+        if(!searchVM.currentQuery.value.isNullOrEmpty())
+        {
+            binding.mediaSearchView.setQuery(searchVM.currentQuery.value,false)
+            binding.mediaSearchView.isIconified = false
+            binding.mediaSearchView.clearFocus()
+        }
+
+
 
     }
+
 
     private fun listenSearchQuery(){
 
         binding.mediaSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
 
+                searchVM.currentQuery.value = query
+                binding.mediaSearchView.clearFocus()
                 return true
             }
 
