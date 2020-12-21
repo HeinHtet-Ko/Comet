@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.PagerAdapter
 
-class SearchPagerAdapter(fm:FragmentManager,behaviour:Int): FragmentStatePagerAdapter(fm,behaviour) {
+class MediaPagerAdapter(fm:FragmentManager, behaviour:Int): FragmentStatePagerAdapter(fm,behaviour) {
 
     private val fragments:MutableList<Fragment> = ArrayList()
     private val fragmentTitles:MutableList<String> = ArrayList()

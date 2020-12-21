@@ -8,7 +8,7 @@ import com.mtu.ceit.hhk.comet.R
 import com.mtu.ceit.hhk.comet.databinding.FragmentSearchBinding
 import com.mtu.ceit.hhk.comet.ui.MainActivity
 import com.mtu.ceit.hhk.comet.ui.viewmodels.MediaSearchViewModel
-import com.mtu.ceit.hhk.comet.ui.fragments.SearchPagerAdapter
+import com.mtu.ceit.hhk.comet.ui.fragments.MediaPagerAdapter
 import com.mtu.ceit.hhk.comet.ui.fragments.search_pagers.MovieSearchPager
 import com.mtu.ceit.hhk.comet.ui.fragments.search_pagers.TVSearchPager
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,7 +21,7 @@ class SearchFragment:Fragment(R.layout.fragment_search) {
     private val binding get() = _binding!!
     private val movFragment = MovieSearchPager()
     private val tvFragment  = TVSearchPager()
-    private lateinit var searchPagerAdapter: SearchPagerAdapter
+    private lateinit var mediaPagerAdapter: MediaPagerAdapter
    //private val searchVM:MediaSearchViewModel by viewModels()
    private lateinit var searchVM: MediaSearchViewModel
 
@@ -66,16 +66,16 @@ class SearchFragment:Fragment(R.layout.fragment_search) {
     }
 
     private fun setUpPager(){
-        searchPagerAdapter = SearchPagerAdapter(requireActivity().supportFragmentManager,0)
-        searchPagerAdapter.addFragment(movFragment,"Movies")
-        searchPagerAdapter.addFragment(tvFragment,"TV")
+        mediaPagerAdapter = MediaPagerAdapter(requireActivity().supportFragmentManager,0)
+        mediaPagerAdapter.addFragment(movFragment,"Movies")
+        mediaPagerAdapter.addFragment(tvFragment,"TV Shows")
 
 
         binding.apply {
 
 
-            mediaViewpager.adapter = searchPagerAdapter
-            mediaTabLayout.setupWithViewPager(mediaViewpager)
+            mediaViewpager.adapter = mediaPagerAdapter
+            mediaSearchTabLayout.setupWithViewPager(mediaViewpager)
 
         }
 

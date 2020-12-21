@@ -7,9 +7,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.main_fragments.MovieFragment">
     <RelativeLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_movie_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+           <LinearLayout
+               android:layout_marginTop="80dp"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:orientation="vertical">
+               <LinearLayout
+                   android:id="@+id/nowPlayingShimmer"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal">
+                   <include layout="@layout/shimmer_list"/>
+                   <include layout="@layout/shimmer_list"/>
+                   <include layout="@layout/shimmer_list"/>
+                   <include layout="@layout/shimmer_list"/>
+                   <include layout="@layout/shimmer_list"/>
+
+               </LinearLayout>
+               <LinearLayout
+                   android:id="@+id/upComingShimmer"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal">
+                   <include layout="@layout/shimmer_list"/>
+                   <include layout="@layout/shimmer_list"/>
+                   <include layout="@layout/shimmer_list"/>
+                   <include layout="@layout/shimmer_list"/>
+                   <include layout="@layout/shimmer_list"/>
+               </LinearLayout>
+           </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
         <androidx.recyclerview.widget.RecyclerView
 
             android:layout_marginTop="50dp"
@@ -28,12 +64,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-        <ProgressBar
-            android:id="@+id/mainPG"
-            android:visibility="gone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true" />
+
     </RelativeLayout>
 
 

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.mtu.ceit.hhk.comet.R
 import com.mtu.ceit.hhk.comet.data_models.Movie
 import com.mtu.ceit.hhk.comet.databinding.MovieItemLayoutBinding
 import com.mtu.ceit.hhk.comet.utils.OnMovieItemClickListener
@@ -28,7 +29,8 @@ class NowMovieAdapter(diffCallback: DiffUtil.ItemCallback<Movie>,val listener: O
               Glide.with(itemView)
                   .load("http://image.tmdb.org/t/p/w500${movie.poster_path}")
                   .transition(DrawableTransitionOptions.withCrossFade())
-                  .into(itembinding.moviePhoto)
+                      .error(R.drawable.error)
+                      .into(itembinding.moviePhoto)
                itembinding.movieRating.text = movie.vote_average.toString().trim()
                itembinding.movieTitle.text = movie.title.trim()
         }

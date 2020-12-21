@@ -2,6 +2,8 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/antic_slab</item>
+        <item>@font/autour_one</item>
+        <item>@font/brawler</item>
         <item>@font/cairo_semibold</item>
     </array>
 </resources>

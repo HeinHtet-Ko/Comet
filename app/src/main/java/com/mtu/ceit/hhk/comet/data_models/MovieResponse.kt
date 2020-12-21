@@ -39,5 +39,20 @@ data class DetailedMovie(
     @Expose
     val backdrop_path:String,
     @Expose
-    val release_date: String
+    val release_date: String,
+    @Expose
+    val genres:List<Genre>,
+    @Expose
+    val revenue:Int,
+    @Expose
+    val budget:Int,
+    @Expose
+    val runtime:Int,
+
+)
+
+data class Genre
+(
+        val id:Int,
+        val name:String
 )

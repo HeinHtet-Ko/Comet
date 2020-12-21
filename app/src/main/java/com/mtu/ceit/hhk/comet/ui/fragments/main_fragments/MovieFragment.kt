@@ -51,6 +51,8 @@ class MovieFragment:Fragment(R.layout.fragment_movie),OnMovieItemClickListener {
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             collectFlow()
         }
+
+        binding.shimmerMovieList.startShimmer()
     }
 
     private fun recyclerSetup(){
@@ -68,16 +70,21 @@ class MovieFragment:Fragment(R.layout.fragment_movie),OnMovieItemClickListener {
          mainVM.nowPlayingMovs.collect {
              when(it){
                  is Resource.Success -> {
-                     binding.mainPG.visibility = View.GONE
+
+                     binding.apply {
+                         shimmerMovieList.stopShimmer()
+                         shimmerMovieList.visibility = View.GONE
+                     }
+
                      _adapter.submitList(it.value.movies)
 
                  }
                  is Resource.ERROR -> {
-                     binding.mainPG.visibility = View.GONE
+
 
                  }
                  is Resource.LOADING -> {
-                     binding.mainPG.visibility = View.VISIBLE
+
                  }
                  else -> {
 
@@ -92,19 +99,19 @@ class MovieFragment:Fragment(R.layout.fragment_movie),OnMovieItemClickListener {
         mainVM.upComingMovs.collect {
             when(it){
                 is Resource.Success -> {
-                    binding.mainPG.visibility = View.GONE
-                    _upComingAdapter.submitList(it.value.movies)
-                    Log.d("Upcoming", "onCreate: ${it.value.movies.size.toString()}")
-                    GlobalScope.launch (Dispatchers.Main){
-                        Toast.makeText(context, "${it.value.movies.size.toString()}", Toast.LENGTH_SHORT).show()
+
+                    binding.apply {
+                        shimmerMovieList.stopShimmer()
+                        shimmerMovieList.visibility = View.GONE
                     }
+                    _upComingAdapter.submitList(it.value.movies)
+
                 }
                 is Resource.ERROR -> {
-                    binding.mainPG.visibility = View.GONE
-                    Log.d("WAY", "onCreate: ${it}")
+
                 }
                 is Resource.LOADING -> {
-                    binding.mainPG.visibility = View.VISIBLE
+
                 }
                 else -> {
 

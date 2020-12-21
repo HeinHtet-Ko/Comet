@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:layout_height="match_parent">
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/movie_detail_overview_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="15dp"
+        android:fontFamily="monospace"
+        android:text=" Overview "
+        android:textSize="17sp" />
+
+    <it.mike5v.viewmoretextview.ViewMoreTextView
+
+        android:layout_below="@+id/movie_detail_overview_title"
+        android:id="@+id/movie_detail_overview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="25dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textSize="14sp"
+        app:duration="200"
+        app:ellipsizeText="View More"
+        app:ellipsizeTextColor="#3949AB"
+        app:isExpanded="false"
+        app:visibleLines="3" />
+
+</RelativeLayout>
