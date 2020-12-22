@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
@@ -14,6 +15,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.mtu.ceit.hhk.comet.R
+import com.mtu.ceit.hhk.comet.data_models.Credits
 import com.mtu.ceit.hhk.comet.data_models.DetailedMovie
 
 
@@ -26,6 +28,7 @@ import com.mtu.ceit.hhk.comet.ui.viewmodels.DetailedMovieViewModel
 import com.mtu.ceit.hhk.comet.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.glide.transformations.gpu.VignetteFilterTransformation
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 
 
@@ -36,13 +39,16 @@ class MovieDetailActivity : AppCompatActivity() {
     private var _binding:MovieDetailBinding ? = null
     private val binding:MovieDetailBinding get () = _binding !!
 
+    @ExperimentalCoroutinesApi
     val detailedVM:DetailedMovieViewModel by viewModels()
-    private var movieID:Int = 0
+
     private lateinit var detailedMovie:DetailedMovie
+    private lateinit var credits: Credits
 
     private lateinit var mediaPagerAdapter: MediaPagerAdapter
 
 
+    @ExperimentalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -51,24 +57,29 @@ class MovieDetailActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        movieID = intent.getIntExtra(EXTRAS_MOVIE_ID,0)
 
-        /* set up back button */
-        setSupportActionBar(binding.movieDetailToolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.setDisplayShowHomeEnabled(true)
+        setUpToolbarback()
 
+        collectDetailedMovie()
 
+        collectCredits()
 
 
-        fetchFlow()
-        collect()
         setUpPager()
+
+
 
     }
 
+    private fun setUpToolbarback(){
+        setSupportActionBar(binding.movieDetailToolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setDisplayShowHomeEnabled(true)
+    }
 
-    private fun collect(){
+
+    @ExperimentalCoroutinesApi
+    private fun collectDetailedMovie(){
         lifecycleScope.launchWhenCreated {
             detailedVM.movieFlow.collect { it ->
                 when(it){
@@ -86,9 +97,9 @@ class MovieDetailActivity : AppCompatActivity() {
 
                         }
 
-                        collectImages(detailedMovie.poster_path,detailedMovie.backdrop_path)
+                        setImages(detailedMovie.poster_path,detailedMovie.backdrop_path)
 
-                        collectInfo()
+                        setInfo(detailedMovie)
 
                         this@MovieDetailActivity.title = detailedMovie.title
 
@@ -114,12 +125,6 @@ class MovieDetailActivity : AppCompatActivity() {
         binding.movieDetailShimmer.stopShimmer()
     }
 
-    private fun fetchFlow(){
-         lifecycleScope.launchWhenCreated {
-             detailedVM.fetchDetailedMovie(movieID)
-         }
-     }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == android.R.id.home){
             onBackPressed()
@@ -128,7 +133,7 @@ class MovieDetailActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun collectImages(posterPath:String,backdrop: String){
+    private fun setImages(posterPath:String,backdrop: String){
         Glide.with(this@MovieDetailActivity)
                 .load("http://image.tmdb.org/t/p/w500${posterPath}")
                 .transition(DrawableTransitionOptions.withCrossFade())
@@ -143,17 +148,17 @@ class MovieDetailActivity : AppCompatActivity() {
             .into(binding.movieDetailBackdrop)
     }
 
-    private fun collectInfo(){
+    private fun setInfo(detailMovie : DetailedMovie){
 
         binding.apply {
 
-            movieDetailTitle.text = detailedMovie.title
-            val year = detailedMovie.release_date.split("-")[0]
+            movieDetailTitle.text = detailMovie.title
+            val year = detailMovie.release_date.split("-")[0]
             movieDetailTitle.append(" ( $year )")
 
 
 
-            val genres  = detailedMovie.genres
+            val genres  = detailMovie.genres
             movieDetailGenresText.append(" Genres - ")
             for(i in genres)
             {
@@ -164,8 +169,58 @@ class MovieDetailActivity : AppCompatActivity() {
                     return
 
             }
+
+
         }
 
+
+    }
+
+    private fun setCredits(credits: Credits){
+        binding.apply {
+
+            movieDetailDirectorText.append ("Director - ")
+            for(i in credits.crews){
+
+
+
+                if(i.job == "Director"){
+
+                   // Toast.makeText(applicationContext, " ${i.name}", Toast.LENGTH_SHORT).show()
+                    movieDetailDirectorText.visibility= View.VISIBLE
+                    movieDetailDirectorText.append("${i.name} and ")
+                }
+
+            }
+
+        }
+    }
+
+    @ExperimentalCoroutinesApi
+    private fun collectCredits(){
+
+       lifecycleScope.launchWhenCreated {
+           detailedVM.creditsFlow.collect {
+               when(it) {
+                   is Resource.Success -> {
+                       credits = it.value
+
+
+                       Log.d("CREDITSACTIVITY", "collectCredits: ${credits.id} ")
+                       setCredits(credits)
+                   }
+                   is Resource.ERROR -> {
+                       Toast.makeText(applicationContext,"${it.message}",
+                               Toast.LENGTH_LONG).show()
+                   }
+                   else -> {
+
+                   }
+
+
+               }
+           }
+       }
 
     }
 

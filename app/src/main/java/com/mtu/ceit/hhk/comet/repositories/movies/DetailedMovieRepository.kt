@@ -1,5 +1,6 @@
 package com.mtu.ceit.hhk.comet.repositories.movies
 
+import android.util.Log
 import com.mtu.ceit.hhk.comet.network.TMDB_API
 import com.mtu.ceit.hhk.comet.utils.Resource
 import java.lang.Exception
@@ -19,6 +20,26 @@ class DetailedMovieRepository @Inject constructor(private val api:TMDB_API) {
 
            Resource.ERROR(e.message!!)
         }
+    }
+
+    suspend fun <E> getCredits(movId:Int):Resource<E> {
+
+        return try {
+
+
+            val credits = api.getCastAndCrew(movID = movId)
+            Log.d("CREDITSUCCESS", " ${credits.id} haha")
+
+            Resource.Success(credits as E)
+
+
+        }catch (e:Exception){
+
+            Log.d("CREDITS", "getCredits: ${e.message}")
+            Resource.ERROR(e.message!!)
+        }
+
+
     }
 
 

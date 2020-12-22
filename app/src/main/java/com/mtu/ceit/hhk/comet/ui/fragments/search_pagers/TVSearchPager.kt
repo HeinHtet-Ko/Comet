@@ -10,9 +10,10 @@ import com.mtu.ceit.hhk.comet.databinding.FragmentTvSearchBinding
 import com.mtu.ceit.hhk.comet.ui.MainActivity
 import com.mtu.ceit.hhk.comet.ui.viewmodels.MediaSearchViewModel
 import com.mtu.ceit.hhk.comet.ui.SearchTVPagingAdapter
-import com.mtu.ceit.hhk.comet.utils.OnMovieItemClickListener
+import com.mtu.ceit.hhk.comet.utils.OnItemClickListener
 
-class TVSearchPager:Fragment(R.layout.fragment_tv_search),OnMovieItemClickListener{
+
+class TVSearchPager:Fragment(R.layout.fragment_tv_search),OnItemClickListener{
 
 
 
@@ -67,7 +68,7 @@ class TVSearchPager:Fragment(R.layout.fragment_tv_search),OnMovieItemClickListen
         _binding = null
     }
 
-    override fun onMovieItemClick(movieID: Int) {
+    override fun onItemClick(movieID: Int) {
         Toast.makeText(requireContext(), movieID.toString(), Toast.LENGTH_SHORT).show()
     }
 

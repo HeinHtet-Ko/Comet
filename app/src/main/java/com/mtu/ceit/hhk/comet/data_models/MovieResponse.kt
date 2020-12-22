@@ -48,7 +48,13 @@ data class DetailedMovie(
     val budget:Int,
     @Expose
     val runtime:Int,
+    @Expose
+    val spoken_languages:List<SpokenLanguage>
 
+)
+data class SpokenLanguage(
+    @Expose
+    val name:String
 )
 
 data class Genre

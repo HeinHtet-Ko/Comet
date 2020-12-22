@@ -14,8 +14,8 @@ import com.mtu.ceit.hhk.comet.ui.MovieDetailActivity
 import com.mtu.ceit.hhk.comet.ui.viewmodels.MainViewModel
 import com.mtu.ceit.hhk.comet.ui.adapters.NowMovieAdapter
 import com.mtu.ceit.hhk.comet.utils.DiffUtilDifferentiators
+import com.mtu.ceit.hhk.comet.utils.OnItemClickListener
 
-import com.mtu.ceit.hhk.comet.utils.OnMovieItemClickListener
 import com.mtu.ceit.hhk.comet.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -23,7 +23,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 @AndroidEntryPoint
-class MovieFragment:Fragment(R.layout.fragment_movie),OnMovieItemClickListener {
+class MovieFragment:Fragment(R.layout.fragment_movie),OnItemClickListener {
 
 
 
@@ -126,7 +126,7 @@ class MovieFragment:Fragment(R.layout.fragment_movie),OnMovieItemClickListener {
         _binding = null
     }
 
-    override fun onMovieItemClick(movieID: Int) {
+    override fun onItemClick(movieID: Int) {
         val intent = MovieDetailActivity.navigate(requireContext(),movieID)
         startActivity(intent)
     }

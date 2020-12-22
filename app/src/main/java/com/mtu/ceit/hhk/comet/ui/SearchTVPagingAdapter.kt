@@ -9,16 +9,17 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.mtu.ceit.hhk.comet.data_models.TV
 import com.mtu.ceit.hhk.comet.databinding.MovieItemLayoutBinding
 import com.mtu.ceit.hhk.comet.utils.DiffUtilDifferentiators
-import com.mtu.ceit.hhk.comet.utils.OnMovieItemClickListener
+import com.mtu.ceit.hhk.comet.utils.OnItemClickListener
 
-class SearchTVPagingAdapter(val listener:OnMovieItemClickListener): PagingDataAdapter<TV, SearchTVPagingAdapter.SearchTVViewHolder>(DiffUtilDifferentiators.TVDifferentiator) {
+
+class SearchTVPagingAdapter(val listener:OnItemClickListener): PagingDataAdapter<TV, SearchTVPagingAdapter.SearchTVViewHolder>(DiffUtilDifferentiators.TVDifferentiator) {
 
 
     inner class SearchTVViewHolder(private val itemLayoutBinding: MovieItemLayoutBinding):RecyclerView.ViewHolder(itemLayoutBinding.root){
         init {
             itemLayoutBinding.root.setOnClickListener {
 
-                listener.onMovieItemClick(getItem(bindingAdapterPosition)!!.id)
+                listener.onItemClick(getItem(bindingAdapterPosition)!!.id)
             }
         }
         fun bindViews(tv: TV){

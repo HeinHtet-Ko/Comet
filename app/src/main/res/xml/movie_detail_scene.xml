@@ -31,8 +31,13 @@
                android:alpha="1" />
        </KeyFrameSet>
         <OnSwipe
+
+
             motion:touchAnchorId="@+id/movie_detail_relative_image"
             motion:touchAnchorSide="bottom" />
+
+
+
     </Transition>
 
     <ConstraintSet android:id="@+id/start">

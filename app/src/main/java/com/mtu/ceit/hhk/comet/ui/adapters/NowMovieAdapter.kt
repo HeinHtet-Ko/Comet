@@ -10,10 +10,11 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.mtu.ceit.hhk.comet.R
 import com.mtu.ceit.hhk.comet.data_models.Movie
 import com.mtu.ceit.hhk.comet.databinding.MovieItemLayoutBinding
-import com.mtu.ceit.hhk.comet.utils.OnMovieItemClickListener
+import com.mtu.ceit.hhk.comet.utils.OnItemClickListener
 
 
-class NowMovieAdapter(diffCallback: DiffUtil.ItemCallback<Movie>,val listener: OnMovieItemClickListener) : ListAdapter<Movie, NowMovieAdapter.MovieViewHolder>(diffCallback) {
+
+class NowMovieAdapter(diffCallback: DiffUtil.ItemCallback<Movie>,val listener: OnItemClickListener) : ListAdapter<Movie, NowMovieAdapter.MovieViewHolder>(diffCallback) {
 
 
     inner class MovieViewHolder(private val itembinding: MovieItemLayoutBinding) :RecyclerView.ViewHolder(itembinding.root){
@@ -21,7 +22,7 @@ class NowMovieAdapter(diffCallback: DiffUtil.ItemCallback<Movie>,val listener: O
         init {
             itembinding.root.setOnClickListener {
 
-                listener.onMovieItemClick(getItem(bindingAdapterPosition).id)
+                listener.onItemClick(getItem(bindingAdapterPosition).id)
             }
         }
         fun bindViews(movie:Movie){

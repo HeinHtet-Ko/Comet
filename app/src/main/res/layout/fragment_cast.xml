@@ -1,9 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content">
-<TextView
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="CAST"
-    android:layout_centerInParent="true"/>
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+
+
+        android:id="@+id/cast_shimmer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <include android:id="@+id/shimmer_cast_layout_one"
+                layout="@layout/shimmer_movie_detail_cast_item_layout"/>
+            <include android:id="@+id/shimmer_cast_layout_two"
+                layout="@layout/shimmer_movie_detail_cast_item_layout"/>
+            <include android:id="@+id/shimmer_cast_layout_three"
+                layout="@layout/shimmer_movie_detail_cast_item_layout"/>
+            <include android:id="@+id/shimmer_cast_layout_four"
+                layout="@layout/shimmer_movie_detail_cast_item_layout"/>
+
+        </LinearLayout>
+
+        <include android:id="@+id/shimmer_cast_layout"
+            layout="@layout/shimmer_movie_detail_cast_item_layout"/>
+
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+<androidx.recyclerview.widget.RecyclerView
+
+    android:id="@+id/movie_detail_cast_recycler"
+
+    android:clipToPadding="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+    android:orientation="vertical"/>
 </RelativeLayout>

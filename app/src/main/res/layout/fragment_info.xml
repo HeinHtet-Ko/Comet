@@ -1,36 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
     android:layout_height="match_parent">
 
-    <TextView
-        android:visibility="gone"
-        android:id="@+id/movie_detail_overview_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="monospace"
-        android:text=" Overview "
-        android:textSize="17sp" />
-
-    <it.mike5v.viewmoretextview.ViewMoreTextView
-
-        android:layout_below="@+id/movie_detail_overview_title"
-        android:id="@+id/movie_detail_overview"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="25dp"
-        android:fontFamily="sans-serif-smallcaps"
-        android:textSize="14sp"
-        app:duration="200"
-        app:ellipsizeText="View More"
-        app:ellipsizeTextColor="#3949AB"
-        app:isExpanded="false"
-        app:visibleLines="3" />
+        android:layout_height="wrap_content">
 
-</RelativeLayout>
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/movie_detail_overview_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="monospace"
+            android:text=" Overview "
+            android:textSize="17sp" />
+
+        <it.mike5v.viewmoretextview.ViewMoreTextView
+
+            android:layout_below="@+id/movie_detail_overview_title"
+            android:id="@+id/movie_detail_overview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="25dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:textSize="14sp"
+            app:duration="200"
+            app:ellipsizeText="View More"
+            app:ellipsizeTextColor="#3949AB"
+            app:isExpanded="false"
+            app:visibleLines="3" />
+
+        <LinearLayout
+            android:visibility="gone"
+            android:layout_below="@id/movie_detail_overview"
+            android:layout_marginTop="30dp"
+            android:paddingStart="20dp"
+            android:layout_marginStart="10dp"
+            android:paddingBottom="10dp"
+            android:id="@+id/rating_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_marginBottom="15dp"
+                android:drawableStart="@drawable/ic_baseline_date_range_24"
+                android:drawablePadding="10dp"
+                android:id="@+id/movie_detail_released_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Released Date -  "/>
+
+            <TextView
+                android:layout_marginBottom="15dp"
+                android:drawableStart="@drawable/ic_baseline_star_rate_24"
+                android:drawablePadding="10dp"
+                android:id="@+id/movie_detail_rating_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Rating -  "/>
+            <TextView
+                android:layout_marginBottom="15dp"
+                android:drawableStart="@drawable/ic_baseline_list_alt_24"
+                android:drawablePadding="10dp"
+                android:id="@+id/movie_detail_rating_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Rate Count - "/>
+            <TextView
+                android:layout_marginBottom="15dp"
+                android:drawableStart="@drawable/ic_baseline_access_time_24"
+                android:drawablePadding="10dp"
+                android:id="@+id/movie_detail_running_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Running Time - "/>
+            <TextView
+                android:layout_marginBottom="15dp"
+                android:drawableStart="@drawable/ic_baseline_monetization_on_24"
+                android:drawablePadding="10dp"
+                android:id="@+id/movie_detail_budget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Budget - "/>
+            <TextView
+                android:layout_marginBottom="15dp"
+                android:drawableStart="@drawable/ic_baseline_money_24"
+                android:drawablePadding="10dp"
+                android:id="@+id/movie_detail_revenue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Revenue - "/>
+            <TextView
+                android:layout_marginBottom="15dp"
+                android:drawableStart="@drawable/ic_baseline_language_24"
+                android:drawablePadding="10dp"
+                android:id="@+id/movie_detail_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Revenue - "/>
+
+        </LinearLayout>
+
+
+
+
+    </RelativeLayout>
+
+
+
+
+
+</ScrollView>

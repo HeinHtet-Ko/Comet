@@ -1,5 +1,6 @@
 package com.mtu.ceit.hhk.comet.ui.fragments.search_pagers
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -8,13 +9,14 @@ import androidx.paging.LoadState
 import com.mtu.ceit.hhk.comet.R
 import com.mtu.ceit.hhk.comet.databinding.FragmentMovieSearchBinding
 import com.mtu.ceit.hhk.comet.ui.MainActivity
+import com.mtu.ceit.hhk.comet.ui.MovieDetailActivity
 import com.mtu.ceit.hhk.comet.ui.viewmodels.MediaSearchViewModel
 import com.mtu.ceit.hhk.comet.ui.SearchMoviePagingAdapter
-import com.mtu.ceit.hhk.comet.utils.OnMovieItemClickListener
+import com.mtu.ceit.hhk.comet.utils.OnItemClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MovieSearchPager:Fragment(R.layout.fragment_movie_search),OnMovieItemClickListener {
+class MovieSearchPager:Fragment(R.layout.fragment_movie_search),OnItemClickListener {
 
     private var _binding:FragmentMovieSearchBinding ?= null
     private val binding: FragmentMovieSearchBinding get() = _binding!!
@@ -66,8 +68,10 @@ class MovieSearchPager:Fragment(R.layout.fragment_movie_search),OnMovieItemClick
     }
 
 
-    override fun onMovieItemClick(movieID: Int) {
-        Toast.makeText(requireContext(), movieID.toString()+"pya", Toast.LENGTH_SHORT).show()
+    override fun onItemClick(movieID: Int) {
+        val intent = Intent(requireContext(),MovieDetailActivity::class.java)
+        intent.putExtra("movie_id",movieID)
+        startActivity(intent)
     }
 
     override fun onDestroy() {

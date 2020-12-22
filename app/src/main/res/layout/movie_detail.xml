@@ -2,6 +2,7 @@
 <androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/comet"
+    android:id="@+id/motion_layout_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layoutDescription="@xml/movie_detail_scene">
@@ -109,7 +110,7 @@
             android:fontFamily="@font/cairo_semibold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" Director - Quentin Tarantino"/>
+            android:text=" "/>
 
         <TextView
             android:layout_marginTop="10dp"
