@@ -28,14 +28,14 @@ class DetailedMovieRepository @Inject constructor(private val api:TMDB_API) {
 
 
             val credits = api.getCastAndCrew(movID = movId)
-            Log.d("CREDITSUCCESS", " ${credits.id} haha")
+
 
             Resource.Success(credits as E)
 
 
         }catch (e:Exception){
 
-            Log.d("CREDITS", "getCredits: ${e.message}")
+
             Resource.ERROR(e.message!!)
         }
 

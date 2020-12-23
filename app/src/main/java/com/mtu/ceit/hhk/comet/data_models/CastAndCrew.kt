@@ -36,3 +36,18 @@ data class Crew(
         @Expose
         val job:String
 )
+
+data class PersonDetail(
+        @Expose
+        val name:String,
+        @Expose
+        val profile_path: String,
+        @Expose
+        val biography:String,
+        @Expose
+        val birthday:String,
+        @Expose
+        val deathday:String?,
+        @Expose
+        val place_of_birth:String
+)

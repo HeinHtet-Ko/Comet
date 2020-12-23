@@ -1,5 +1,6 @@
 package com.mtu.ceit.hhk.comet.ui.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -26,6 +27,7 @@ class MovieDetailCastAdapter(diffCallback: DiffUtil.ItemCallback<Cast>,val liste
         init {
             itembinding.root.setOnClickListener {
 
+                Log.d("RECYCLER", ": ${getItem(bindingAdapterPosition).id}")
                 listener.onItemClick(getItem(bindingAdapterPosition).id)
             }
         }

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/comet"
     android:id="@+id/motion_layout_detail"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layoutDescription="@xml/movie_detail_scene">
@@ -49,6 +50,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.cardview.widget.CardView
+
             app:cardBackgroundColor="@color/shimmer_color"
             android:layout_marginBottom="5dp"
             android:id="@+id/movie_detail_poster_card"
@@ -60,6 +62,7 @@
             android:elevation="20dp">
 
             <ImageView
+                android:transitionName="movie"
                 android:id="@+id/movie_detail_poster"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

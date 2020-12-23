@@ -1,10 +1,7 @@
 package com.mtu.ceit.hhk.comet.network
 
 import com.mtu.ceit.hhk.comet.BuildConfig
-import com.mtu.ceit.hhk.comet.data_models.Credits
-import com.mtu.ceit.hhk.comet.data_models.DetailedMovie
-import com.mtu.ceit.hhk.comet.data_models.MovieResponse
-import com.mtu.ceit.hhk.comet.data_models.TVResponse
+import com.mtu.ceit.hhk.comet.data_models.*
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -45,5 +42,9 @@ interface TMDB_API {
     @GET("3/movie/{movie_id}/credits")
     suspend fun getCastAndCrew(@Path("movie_id") movID:Int ,
                                @Query("api_key") key:String = TMDB_KEY):Credits
+
+    @GET("3/person/{person_id}")
+    suspend fun getPersonDetail(@Path("person_id") personID:Int ,
+                                @Query("api_key") key:String = TMDB_KEY):PersonDetail
 
 }

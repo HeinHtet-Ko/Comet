@@ -23,7 +23,7 @@ class DetailedMovieViewModel @ViewModelInject constructor(
     val movieFlow:MutableStateFlow<Resource<DetailedMovie>> = MutableStateFlow(Resource.EMPTY)
     init {
 
-        Log.d("Movie", savedStateHandle.get<Int>("movie_id").toString())
+
         val movID = savedStateHandle.get<Int>("movie_id")!!
         viewModelScope.launch {
             fetchDetailedMovie(movID)
@@ -43,6 +43,7 @@ class DetailedMovieViewModel @ViewModelInject constructor(
             }
             is Resource.ERROR -> {
                 movieFlow.value = Resource.ERROR(resource.message)
+
             }
         }
 
@@ -51,18 +52,15 @@ class DetailedMovieViewModel @ViewModelInject constructor(
     private suspend fun fetchCredits(movID:Int){
 
         creditsFlow.value = Resource.LOADING
-        val resource = repository.getCredits<Credits>(movID)
 
-        when(resource){
+        when(val resource = repository.getCredits<Credits>(movID)){
             is Resource.Success -> {
                 creditsFlow.value = resource
-
-
             }
             is Resource.ERROR -> {
 
-               // Log.d("VIEWMODELPOINTER", "collectCredits:  ")
                 creditsFlow.value = Resource.ERROR(resource.message)
+
             }
             else -> {
 

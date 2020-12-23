@@ -9,6 +9,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_centerHorizontal="true"
+
         android:id="@+id/movie_card"
         android:layout_width="wrap_content"
         android:layout_height="165dp"
@@ -39,6 +40,7 @@
                 android:textSize="15sp" />
 
             <ImageView
+                android:transitionName="movie"
                 android:elevation="10dp"
                 android:id="@+id/movie_photo"
                 android:scaleType="centerCrop"

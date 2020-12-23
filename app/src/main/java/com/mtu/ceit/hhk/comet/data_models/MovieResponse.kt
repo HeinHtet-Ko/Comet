@@ -2,6 +2,7 @@ package com.mtu.ceit.hhk.comet.data_models
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.math.BigInteger
 
 data class MovieResponse(
     @Expose
@@ -43,9 +44,9 @@ data class DetailedMovie(
     @Expose
     val genres:List<Genre>,
     @Expose
-    val revenue:Int,
+    val revenue:Long,
     @Expose
-    val budget:Int,
+    val budget:Long,
     @Expose
     val runtime:Int,
     @Expose

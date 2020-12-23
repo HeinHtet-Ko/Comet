@@ -1,5 +1,6 @@
 package com.mtu.ceit.hhk.comet.ui
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -186,7 +187,6 @@ class MovieDetailActivity : AppCompatActivity() {
 
                 if(i.job == "Director"){
 
-                   // Toast.makeText(applicationContext, " ${i.name}", Toast.LENGTH_SHORT).show()
                     movieDetailDirectorText.visibility= View.VISIBLE
                     movieDetailDirectorText.append("${i.name} and ")
                 }
@@ -203,11 +203,10 @@ class MovieDetailActivity : AppCompatActivity() {
            detailedVM.creditsFlow.collect {
                when(it) {
                    is Resource.Success -> {
+
                        credits = it.value
-
-
-                       Log.d("CREDITSACTIVITY", "collectCredits: ${credits.id} ")
                        setCredits(credits)
+
                    }
                    is Resource.ERROR -> {
                        Toast.makeText(applicationContext,"${it.message}",
@@ -242,7 +241,7 @@ class MovieDetailActivity : AppCompatActivity() {
 
     companion object{
 
-        internal const val EXTRAS_MOVIE_ID = "movie_id"
+        private const val EXTRAS_MOVIE_ID = "movie_id"
 
         fun navigate(context: Context,movID:Int):Intent{
 

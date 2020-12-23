@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.navGraphViewModels
@@ -127,6 +128,10 @@ class MovieFragment:Fragment(R.layout.fragment_movie),OnItemClickListener {
     }
 
     override fun onItemClick(movieID: Int) {
+
+
+        Toast.makeText(requireContext(), movieID.toString(), Toast.LENGTH_SHORT).show()
+    //  val options =   ActivityOptionsCompat.makeSceneTransitionAnimation(requireActivity(),binding.nowPlayingRecycler.rootView,"movie")
         val intent = MovieDetailActivity.navigate(requireContext(),movieID)
         startActivity(intent)
     }
