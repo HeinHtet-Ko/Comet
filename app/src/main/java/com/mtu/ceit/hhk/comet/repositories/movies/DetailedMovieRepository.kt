@@ -1,6 +1,7 @@
 package com.mtu.ceit.hhk.comet.repositories.movies
 
 import android.util.Log
+import com.mtu.ceit.hhk.comet.data_models.ReviewResult
 import com.mtu.ceit.hhk.comet.network.TMDB_API
 import com.mtu.ceit.hhk.comet.utils.Resource
 import java.lang.Exception
@@ -39,6 +40,17 @@ class DetailedMovieRepository @Inject constructor(private val api:TMDB_API) {
             Resource.ERROR(e.message!!)
         }
 
+
+    }
+
+    suspend fun getReviews(movId: Int):Resource<ReviewResult>
+    {
+        return try {
+            val results = api.getMovieReviews(movId)
+            Resource.Success(results)
+        }catch (e:Exception){
+            Resource.ERROR(e.message!!)
+        }
 
     }
 

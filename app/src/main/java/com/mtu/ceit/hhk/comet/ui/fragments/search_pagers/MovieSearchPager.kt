@@ -69,6 +69,7 @@ class MovieSearchPager:Fragment(R.layout.fragment_movie_search),OnItemClickListe
 
 
     override fun onItemClick(movieID: Int) {
+        Toast.makeText(requireContext(), "$movieID", Toast.LENGTH_SHORT).show()
         val intent = Intent(requireContext(),MovieDetailActivity::class.java)
         intent.putExtra("movie_id",movieID)
         startActivity(intent)

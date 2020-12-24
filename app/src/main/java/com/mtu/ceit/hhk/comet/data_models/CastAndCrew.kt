@@ -43,11 +43,13 @@ data class PersonDetail(
         @Expose
         val profile_path: String,
         @Expose
-        val biography:String,
+        val biography:String?,
         @Expose
-        val birthday:String,
+        val birthday:String?,
         @Expose
         val deathday:String?,
         @Expose
-        val place_of_birth:String
+        val place_of_birth:String?,
+        @Expose
+        val popularity:Float?
 )

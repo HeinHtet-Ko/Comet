@@ -93,6 +93,7 @@ class MovieDetailActivity : AppCompatActivity() {
 
                         binding.movieDetailShimmer.stopShimmer()
 
+
                         binding.shimmerLayout.apply {
                            shimmerMain.visibility = View.GONE
 

@@ -29,6 +29,10 @@
                motion:motionTarget="@+id/movie_detail_appbar"
                motion:framePosition="100"
                android:alpha="1" />
+           <KeyAttribute
+               motion:motionTarget="@+id/movie_detail_genres_relative"
+               motion:framePosition="100"
+               android:alpha="0" />
        </KeyFrameSet>
         <OnSwipe
 
@@ -50,6 +54,12 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@+id/movie_detail_genres_relative"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/movie_detail_relative_image"
+            motion:layout_constraintStart_toStartOf="parent"
+            />
 
         <Constraint
             android:id="@+id/movie_detail_scrollview"
@@ -58,6 +68,6 @@
             android:layout_height="match_parent"
             motion:layout_constraintTop_toBottomOf="@+id/movie_detail_relative_image"
             motion:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="85dp" />
+            android:layout_marginTop="75dp" />
     </ConstraintSet>
 </MotionScene>
