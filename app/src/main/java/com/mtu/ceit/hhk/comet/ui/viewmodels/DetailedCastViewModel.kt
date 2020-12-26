@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.mtu.ceit.hhk.comet.data_models.CombinedCredits
 import com.mtu.ceit.hhk.comet.data_models.PersonDetail
 import com.mtu.ceit.hhk.comet.repositories.PersonRepository
 import com.mtu.ceit.hhk.comet.utils.Resource
@@ -20,12 +21,16 @@ class DetailedCastViewModel @ViewModelInject constructor(
 
     val personFlow:MutableStateFlow<Resource<PersonDetail>> = MutableStateFlow(Resource.EMPTY)
 
+    val combinedCreditsFlow:MutableStateFlow<Resource<CombinedCredits>> = MutableStateFlow(Resource.EMPTY)
+
     init {
         val cast_id = saveStateHandle.get<Int>("cast_id")!!
 
 
         viewModelScope.launch {
             fetchPerson(cast_id)
+
+            fetchFilmography(cast_id)
         }
 
 
@@ -52,6 +57,29 @@ class DetailedCastViewModel @ViewModelInject constructor(
                     personFlow.value = Resource.ERROR("Something happened!!")
                 }
             }
+
+    }
+
+
+    private suspend fun fetchFilmography(pID:Int){
+        combinedCreditsFlow.value =  Resource.LOADING
+
+        val resource = repos.getPersonFilmography(pID)
+
+
+        when(resource){
+            is Resource.Success -> {
+                combinedCreditsFlow.value = resource
+            }
+            is Resource.ERROR -> {
+
+                combinedCreditsFlow.value = Resource.ERROR(resource.message)
+            }
+            else -> {
+
+                combinedCreditsFlow.value = Resource.ERROR("Something happened!!")
+            }
+        }
 
     }
 

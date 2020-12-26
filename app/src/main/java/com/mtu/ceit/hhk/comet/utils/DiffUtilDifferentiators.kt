@@ -2,6 +2,7 @@ package com.mtu.ceit.hhk.comet.utils
 
 import androidx.recyclerview.widget.DiffUtil
 import com.mtu.ceit.hhk.comet.data_models.Cast
+import com.mtu.ceit.hhk.comet.data_models.CombinedCredit
 import com.mtu.ceit.hhk.comet.data_models.Movie
 import com.mtu.ceit.hhk.comet.data_models.TV
 
@@ -18,6 +19,18 @@ class DiffUtilDifferentiators {
             }
 
         }
+
+        val FilmDifferentiator =  object:DiffUtil.ItemCallback<CombinedCredit>(){
+            override fun areItemsTheSame(oldItem: CombinedCredit, newItem: CombinedCredit): Boolean {
+                return oldItem.id == newItem.id
+            }
+
+            override fun areContentsTheSame(oldItem: CombinedCredit, newItem: CombinedCredit): Boolean {
+                return oldItem == newItem
+            }
+
+        }
+
 
         val CastDifferentiator = object :DiffUtil.ItemCallback<Cast> () {
             override fun areItemsTheSame(oldItem: Cast, newItem: Cast): Boolean {

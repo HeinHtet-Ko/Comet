@@ -38,29 +38,7 @@ class CastPager:Fragment(R.layout.fragment_cast) , OnItemClickListener {
 
         castRecyclerSetUp()
 
-        lifecycleScope.launchWhenCreated {
-            movieDetailVM.creditsFlow.collect {
-
-                when(it) {
-
-                    is Resource.Success -> {
-                        binding.castShimmer.stopShimmer()
-                        binding.castShimmer.visibility  = View.GONE
-                       _adapter.submitList(it.value.casts)
-
-
-                    }
-                    else -> {
-
-                    }
-
-                }
-
-            }
-        }
-
-
-
+        collectCast()
 
     }
 
@@ -84,6 +62,30 @@ class CastPager:Fragment(R.layout.fragment_cast) , OnItemClickListener {
             movieDetailCastRecycler.setHasFixedSize(true)
         }
 
+
+    }
+
+    private  fun collectCast(){
+        lifecycleScope.launchWhenCreated {
+            movieDetailVM.creditsFlow.collect {
+
+                when(it) {
+
+                    is Resource.Success -> {
+                        binding.castShimmer.stopShimmer()
+                        binding.castShimmer.visibility  = View.GONE
+                        _adapter.submitList(it.value.casts)
+
+
+                    }
+                    else -> {
+
+                    }
+
+                }
+
+            }
+        }
 
     }
 

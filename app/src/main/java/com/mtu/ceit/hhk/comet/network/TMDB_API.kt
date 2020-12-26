@@ -16,7 +16,7 @@ interface TMDB_API {
     @GET("3/movie/now_playing")
     suspend fun getNowMovies(@Query("api_key")key : String =BuildConfig.TMDB_KEY):MovieResponse
 
-    @GET("3/movie/upcoming")
+    @GET("3/movie/popular")
     suspend fun getComingMovies(@Query("api_key")key : String = TMDB_KEY):MovieResponse
 
 
@@ -48,10 +48,23 @@ interface TMDB_API {
     suspend fun getPersonDetail(@Path("person_id") personID:Int ,
                                 @Query("api_key") key:String = TMDB_KEY):PersonDetail
 
+    @GET("3/person/{person_id}/combined_credits")
+    suspend fun getCombinedCredits(@Path("person_id") personID: Int,
+    @Query("api_key") key: String = TMDB_KEY):CombinedCredits
+
 
 
     @GET("3/movie/{movie_id}/reviews")
     suspend fun getMovieReviews(
             @Path("movie_id") movID: Int,
             @Query("api_key") key:String = TMDB_KEY):ReviewResult
+
+
+
+
+    @GET("3/tv/on_the_air")
+    suspend fun getTVOTA(@Query("api_key")key : String =BuildConfig.TMDB_KEY):TVResponse
+
+    @GET("3/tv/popular")
+    suspend fun getTVPopular(@Query("api_key")key : String =BuildConfig.TMDB_KEY):TVResponse
 }

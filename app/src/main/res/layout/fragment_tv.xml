@@ -1,9 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/comet"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.main_fragments.TVFragment">
 
+    <RelativeLayout
 
-</RelativeLayout>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_movie_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_marginTop="80dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/otaShimmer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <include layout="@layout/shimmer_list"/>
+                    <include layout="@layout/shimmer_list"/>
+                    <include layout="@layout/shimmer_list"/>
+                    <include layout="@layout/shimmer_list"/>
+                    <include layout="@layout/shimmer_list"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/airShimmer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <include layout="@layout/shimmer_list"/>
+                    <include layout="@layout/shimmer_list"/>
+                    <include layout="@layout/shimmer_list"/>
+                    <include layout="@layout/shimmer_list"/>
+                    <include layout="@layout/shimmer_list"/>
+                </LinearLayout>
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+        <androidx.recyclerview.widget.RecyclerView
+
+            android:layout_marginTop="50dp"
+
+            android:id="@+id/otaRecycler"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_below="@+id/otaRecycler"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="100dp"
+            android:id="@+id/upRecycler"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+
+</ScrollView>

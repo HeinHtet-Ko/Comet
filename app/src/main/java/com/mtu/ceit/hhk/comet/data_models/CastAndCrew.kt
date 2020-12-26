@@ -53,3 +53,21 @@ data class PersonDetail(
         @Expose
         val popularity:Float?
 )
+
+data class CombinedCredits (
+        @Expose
+        val cast:List<CombinedCredit>
+)
+data class CombinedCredit(
+        @Expose
+        val id:Int,
+        @Expose
+        val media_type:String,
+        @Expose
+        val poster_path:String,
+        @Expose
+        val name:String,
+        @Expose
+        val title:String
+
+)
