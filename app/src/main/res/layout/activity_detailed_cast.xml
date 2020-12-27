@@ -165,6 +165,24 @@
                 app:isExpanded="false"
                 app:visibleLines="2" />
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_below="@id/cast_detail_biography"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/movCredit_recycler"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_below="@id/movCredit_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvCredit_recycler"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal"
+                />
+
 
         </RelativeLayout>
     </ScrollView>

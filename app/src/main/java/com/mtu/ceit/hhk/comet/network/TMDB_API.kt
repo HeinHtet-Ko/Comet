@@ -48,10 +48,13 @@ interface TMDB_API {
     suspend fun getPersonDetail(@Path("person_id") personID:Int ,
                                 @Query("api_key") key:String = TMDB_KEY):PersonDetail
 
-    @GET("3/person/{person_id}/combined_credits")
-    suspend fun getCombinedCredits(@Path("person_id") personID: Int,
-    @Query("api_key") key: String = TMDB_KEY):CombinedCredits
+    @GET("3/person/{person_id}/tv_credits")
+    suspend fun getTVCredits(@Path("person_id") personID: Int,
+    @Query("api_key") key: String = TMDB_KEY):TVCredits
 
+    @GET("3/person/{person_id}/movie_credits")
+    suspend fun getMovieCredits(@Path("person_id") personID: Int,
+                             @Query("api_key") key: String = TMDB_KEY):MovieCredits
 
 
     @GET("3/movie/{movie_id}/reviews")

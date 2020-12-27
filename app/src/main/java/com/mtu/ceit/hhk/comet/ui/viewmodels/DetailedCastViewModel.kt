@@ -3,12 +3,12 @@ package com.mtu.ceit.hhk.comet.ui.viewmodels
 import android.util.Log
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mtu.ceit.hhk.comet.data_models.CombinedCredits
+import com.mtu.ceit.hhk.comet.data_models.MovieCredits
 import com.mtu.ceit.hhk.comet.data_models.PersonDetail
+import com.mtu.ceit.hhk.comet.data_models.TVCredits
 import com.mtu.ceit.hhk.comet.repositories.PersonRepository
 import com.mtu.ceit.hhk.comet.utils.Resource
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,7 +21,9 @@ class DetailedCastViewModel @ViewModelInject constructor(
 
     val personFlow:MutableStateFlow<Resource<PersonDetail>> = MutableStateFlow(Resource.EMPTY)
 
-    val combinedCreditsFlow:MutableStateFlow<Resource<CombinedCredits>> = MutableStateFlow(Resource.EMPTY)
+    val movCreditsFlow:MutableStateFlow<Resource<MovieCredits>> = MutableStateFlow(Resource.EMPTY)
+
+    val tvCreditsFlow:MutableStateFlow<Resource<TVCredits>> = MutableStateFlow(Resource.EMPTY)
 
     init {
         val cast_id = saveStateHandle.get<Int>("cast_id")!!
@@ -30,7 +32,9 @@ class DetailedCastViewModel @ViewModelInject constructor(
         viewModelScope.launch {
             fetchPerson(cast_id)
 
-            fetchFilmography(cast_id)
+            fetchMovieCredits(cast_id)
+
+            fetchTVCredits(cast_id)
         }
 
 
@@ -61,23 +65,46 @@ class DetailedCastViewModel @ViewModelInject constructor(
     }
 
 
-    private suspend fun fetchFilmography(pID:Int){
-        combinedCreditsFlow.value =  Resource.LOADING
+    private suspend fun fetchMovieCredits(pID:Int){
+        movCreditsFlow.value =  Resource.LOADING
 
-        val resource = repos.getPersonFilmography(pID)
+        val resource = repos.getMovieCredits(pID)
 
 
         when(resource){
             is Resource.Success -> {
-                combinedCreditsFlow.value = resource
+                movCreditsFlow.value = resource
             }
             is Resource.ERROR -> {
 
-                combinedCreditsFlow.value = Resource.ERROR(resource.message)
+                movCreditsFlow.value = Resource.ERROR(resource.message)
             }
             else -> {
 
-                combinedCreditsFlow.value = Resource.ERROR("Something happened!!")
+                movCreditsFlow.value = Resource.ERROR("Something happened!!")
+            }
+        }
+
+    }
+
+
+    private suspend fun fetchTVCredits(pID:Int){
+        tvCreditsFlow.value =  Resource.LOADING
+
+        val resource = repos.getTVCredits(pID)
+
+
+        when(resource){
+            is Resource.Success -> {
+                tvCreditsFlow.value = resource
+            }
+            is Resource.ERROR -> {
+
+                tvCreditsFlow.value = Resource.ERROR(resource.message)
+            }
+            else -> {
+
+                tvCreditsFlow.value = Resource.ERROR("Something happened!!")
             }
         }
 
