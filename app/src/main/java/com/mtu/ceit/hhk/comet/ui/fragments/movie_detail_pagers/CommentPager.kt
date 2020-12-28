@@ -1,4 +1,4 @@
-package com.mtu.ceit.hhk.comet.ui.fragments.movie_detail_fragments
+package com.mtu.ceit.hhk.comet.ui.fragments.movie_detail_pagers
 
 import android.os.Bundle
 import android.view.View

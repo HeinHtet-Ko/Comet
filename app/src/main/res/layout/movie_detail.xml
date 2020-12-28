@@ -127,38 +127,27 @@
 
     </RelativeLayout>
 
-    <ScrollView
 
-        android:id="@+id/movie_detail_scrollview"
+    <androidx.viewpager.widget.ViewPager
+
+        android:id="@+id/movie_detail_viewpager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="350dp"
-        android:fillViewport="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/movie_detail_relative_image">
+        android:layout_height="wrap_content"
+        >
 
-        <androidx.viewpager.widget.ViewPager
+        <com.google.android.material.tabs.TabLayout
 
-
-            android:id="@+id/movie_detail_viewpager"
+            android:id="@+id/movie_detail_tablayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/comet"
+            app:tabIndicatorColor="@android:color/transparent"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/purple_700">
 
-            <com.google.android.material.tabs.TabLayout
+        </com.google.android.material.tabs.TabLayout>
+    </androidx.viewpager.widget.ViewPager>
 
-                app:tabSelectedTextColor="@color/purple_700"
-                android:id="@+id/movie_detail_tablayout"
-                app:tabIndicatorColor="@android:color/transparent"
-                android:background="@color/comet"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:tabMode="fixed">
-
-            </com.google.android.material.tabs.TabLayout>
-        </androidx.viewpager.widget.ViewPager>
-
-    </ScrollView>
 
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

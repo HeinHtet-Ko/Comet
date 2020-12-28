@@ -35,7 +35,7 @@
 <androidx.recyclerview.widget.RecyclerView
 
     android:id="@+id/movie_detail_cast_recycler"
-
+    android:paddingBottom="60dp"
     android:clipToPadding="true"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

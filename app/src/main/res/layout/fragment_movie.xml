@@ -46,25 +46,57 @@
                </LinearLayout>
            </LinearLayout>
         </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <TextView
+            android:id="@+id/nowText"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/texttitle_background"
+            android:fontFamily="@font/convergence"
+            android:text="Now Playing"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/popText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nowPlayingRecycler"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/texttitle_background"
+            android:fontFamily="@font/convergence"
+            android:text=" Popular "
+            android:textSize="18sp" />
+
         <androidx.recyclerview.widget.RecyclerView
 
-            android:layout_marginTop="50dp"
 
             android:id="@+id/nowPlayingRecycler"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nowText"
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_below="@+id/nowPlayingRecycler"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="100dp"
+
             android:id="@+id/upComingRecycler"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/popText"
+            android:layout_marginBottom="70dp"
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     </RelativeLayout>
 

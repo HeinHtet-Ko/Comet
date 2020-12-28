@@ -1,11 +1,10 @@
-package com.mtu.ceit.hhk.comet.ui.fragments.movie_detail_fragments
+package com.mtu.ceit.hhk.comet.ui.fragments.movie_detail_pagers
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.mtu.ceit.hhk.comet.DetailedCastActivity
 import com.mtu.ceit.hhk.comet.R

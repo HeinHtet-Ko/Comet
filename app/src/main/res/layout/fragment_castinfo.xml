@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:id="@+id/cast_info_main_relative"
+        android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+
+
+            android:id="@+id/cast_info_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cast_detail_top_relative">
+
+            <TextView
+                android:id="@+id/cast_detail_born_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:drawableStart="@drawable/ic_baseline_date_range_24"
+                android:drawablePadding="10dp"
+                android:text="Born on -  " />
+
+            <TextView
+                android:id="@+id/cast_detail_birth_place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:drawableStart="@drawable/ic_baseline_edit_location_alt_24"
+                android:drawablePadding="10dp"
+                android:text="Birth of Place -  " />
+
+            <TextView
+                android:id="@+id/cast_detail_popularity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="15dp"
+                android:drawableStart="@drawable/ic_baseline_star_rate_24"
+                android:drawablePadding="10dp"
+                android:text="Popularity -  " />
+
+
+        </LinearLayout>
+
+            <TextView
+                android:id="@+id/biography_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="monospace"
+                android:text="Biography"
+                android:layout_below="@id/cast_info_linear"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <it.mike5v.viewmoretextview.ViewMoreTextView
+                android:id="@+id/cast_detail_biography"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/biography_title"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="sans-serif-smallcaps"
+                android:textSize="14sp"
+                app:duration="200"
+                app:ellipsizeText="View More"
+                app:ellipsizeTextColor="#3949AB"
+                app:isExpanded="false"
+                app:visibleLines="2" />
+
+
+
+        </RelativeLayout>
+
+
+</androidx.core.widget.NestedScrollView>

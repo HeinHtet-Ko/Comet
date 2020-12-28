@@ -1,11 +1,9 @@
 package com.mtu.ceit.hhk.comet.ui
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
@@ -22,9 +20,9 @@ import com.mtu.ceit.hhk.comet.data_models.DetailedMovie
 
 import com.mtu.ceit.hhk.comet.databinding.MovieDetailBinding
 import com.mtu.ceit.hhk.comet.ui.fragments.MediaPagerAdapter
-import com.mtu.ceit.hhk.comet.ui.fragments.movie_detail_fragments.CastPager
-import com.mtu.ceit.hhk.comet.ui.fragments.movie_detail_fragments.CommentPager
-import com.mtu.ceit.hhk.comet.ui.fragments.movie_detail_fragments.InfoPager
+import com.mtu.ceit.hhk.comet.ui.fragments.movie_detail_pagers.CastPager
+import com.mtu.ceit.hhk.comet.ui.fragments.movie_detail_pagers.CommentPager
+import com.mtu.ceit.hhk.comet.ui.fragments.movie_detail_pagers.InfoPager
 import com.mtu.ceit.hhk.comet.ui.viewmodels.DetailedMovieViewModel
 import com.mtu.ceit.hhk.comet.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint

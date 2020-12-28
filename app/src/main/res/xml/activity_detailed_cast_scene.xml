@@ -24,14 +24,7 @@
                motion:motionTarget="@+id/cast_detail_top_relative"
                motion:framePosition="100"
                android:scaleY="0" />
-           <KeyAttribute
-               motion:motionTarget="@+id/info_linear"
-               motion:framePosition="100"
-               android:scaleX="0" />
-           <KeyAttribute
-               motion:motionTarget="@+id/info_linear"
-               motion:framePosition="100"
-               android:scaleY="0" />
+
        </KeyFrameSet>
         <OnSwipe
             motion:touchAnchorId="@+id/cast_detail_top_relative"
@@ -40,36 +33,8 @@
     </Transition>
 
     <ConstraintSet android:id="@+id/start">
-        <Constraint
-            android:id="@+id/info_linear"
-            motion:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            motion:layout_constraintTop_toBottomOf="@+id/cast_detail_top_relative"
-            android:layout_marginStart="30dp"
-            motion:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="20dp"
-            android:visibility="invisible" />
-        <Constraint
-            android:id="@+id/info_linear"
-            motion:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            motion:layout_constraintTop_toBottomOf="@+id/cast_detail_top_relative"
-            android:layout_marginStart="30dp"
-            motion:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="20dp"
-            android:visibility="invisible" />
-        <Constraint
-            android:id="@+id/info_linear"
-            motion:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            motion:layout_constraintTop_toBottomOf="@+id/cast_detail_top_relative"
-            android:layout_marginStart="30dp"
-            motion:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="20dp"
-            />
+
+
 
     </ConstraintSet>
 
@@ -81,12 +46,7 @@
             android:layout_height="1dp"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="55dp" />
-        <Constraint
-            android:id="@+id/info_linear"
-            motion:layout_constraintEnd_toEndOf="parent"
-            motion:layout_constraintTop_toBottomOf="@id/cast_detail_top_relative"
-            motion:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="55dp" />
+            android:layout_marginTop="35dp" />
+
     </ConstraintSet>
 </MotionScene>
