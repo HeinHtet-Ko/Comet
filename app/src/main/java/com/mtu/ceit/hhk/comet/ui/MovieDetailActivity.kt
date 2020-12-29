@@ -19,9 +19,9 @@ import com.mtu.ceit.hhk.comet.data_models.DetailedMovie
 
 
 import com.mtu.ceit.hhk.comet.databinding.MovieDetailBinding
-import com.mtu.ceit.hhk.comet.ui.fragments.MediaPagerAdapter
+import com.mtu.ceit.hhk.comet.ui.adapters.paging_adapter.MediaPagerAdapter
 import com.mtu.ceit.hhk.comet.ui.fragments.movie_detail_pagers.CastPager
-import com.mtu.ceit.hhk.comet.ui.fragments.movie_detail_pagers.CommentPager
+import com.mtu.ceit.hhk.comet.ui.fragments.movie_detail_pagers.ReviewPager
 import com.mtu.ceit.hhk.comet.ui.fragments.movie_detail_pagers.InfoPager
 import com.mtu.ceit.hhk.comet.ui.viewmodels.DetailedMovieViewModel
 import com.mtu.ceit.hhk.comet.utils.Resource
@@ -226,7 +226,7 @@ class MovieDetailActivity : AppCompatActivity() {
         mediaPagerAdapter = MediaPagerAdapter(supportFragmentManager,0)
         mediaPagerAdapter.addFragment(InfoPager()," Info ")
         mediaPagerAdapter.addFragment(CastPager()," Cast ")
-        mediaPagerAdapter.addFragment(CommentPager(), " Comment ")
+        mediaPagerAdapter.addFragment(ReviewPager(), " Reviews ")
 
 
         binding.apply {

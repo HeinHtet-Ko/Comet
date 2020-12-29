@@ -97,6 +97,10 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
 
+
+    implementation 'com.github.everhad:AndroidRatingStar:v1.0.4'
+
+
 }
 
 kapt {

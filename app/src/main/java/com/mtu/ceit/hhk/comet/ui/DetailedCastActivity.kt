@@ -1,35 +1,26 @@
-package com.mtu.ceit.hhk.comet
+package com.mtu.ceit.hhk.comet.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
-import com.bumptech.glide.TransitionOptions
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.mtu.ceit.hhk.comet.data_models.Credits
+import com.mtu.ceit.hhk.comet.R
 import com.mtu.ceit.hhk.comet.data_models.PersonDetail
-import com.mtu.ceit.hhk.comet.data_models.TVCredits
 import com.mtu.ceit.hhk.comet.databinding.ActivityDetailedCastBinding
 import com.mtu.ceit.hhk.comet.ui.adapters.NowMovieAdapter
 import com.mtu.ceit.hhk.comet.ui.adapters.TVAdapter
-import com.mtu.ceit.hhk.comet.ui.fragments.MediaPagerAdapter
+import com.mtu.ceit.hhk.comet.ui.adapters.paging_adapter.MediaPagerAdapter
 import com.mtu.ceit.hhk.comet.ui.fragments.cast_detail_pagers.CastDetailPager
 import com.mtu.ceit.hhk.comet.ui.fragments.cast_detail_pagers.MovieCreditPager
 import com.mtu.ceit.hhk.comet.ui.fragments.cast_detail_pagers.TVCreditPager
-import com.mtu.ceit.hhk.comet.ui.fragments.movie_detail_pagers.CastPager
-import com.mtu.ceit.hhk.comet.ui.fragments.movie_detail_pagers.CommentPager
-import com.mtu.ceit.hhk.comet.ui.fragments.movie_detail_pagers.InfoPager
 import com.mtu.ceit.hhk.comet.ui.viewmodels.DetailedCastViewModel
-import com.mtu.ceit.hhk.comet.utils.DiffUtilDifferentiators
 import com.mtu.ceit.hhk.comet.utils.OnItemClickListener
 import com.mtu.ceit.hhk.comet.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
-import java.lang.Exception
 
 
 @AndroidEntryPoint

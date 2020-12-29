@@ -1,12 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    xmlns:hedgehog="http://schemas.android.com/tools"
+    android:layout_marginTop="18dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <TextView
+        android:text="Reviewer - "
+        android:textSize="16sp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/review_author_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
     </TextView>
+
+    <com.idlestar.ratingstar.RatingStarView
+        android:id="@+id/review_rating"
+        android:layout_below="@id/review_author_name"
+        app:rsv_cornerRadius="4dp"
+        app:rsv_starMargin="4dp"
+        app:rsv_strokeWidth="2px"
+        app:rsv_strokeColor="#457DD7"
+        app:rsv_starForegroundColor="@color/purple_700"
+        app:rsv_starBackgroundColor="@color/white"
+        app:rsv_starNum="5"
+        android:layout_marginStart="20dp"
+        app:rsv_rating="1"
+        app:rsv_onlyHalfStar="true"
+        app:rsv_enableSelectRating="true"
+        app:rsv_starThickness="0.5"
+        android:layout_marginTop="8dp"
+        app:rsv_drawStrokeForEmptyStar="false"
+        app:rsv_drawStrokeForHalfStar="true"
+        android:paddingTop="2dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:scaleX="0.4"
+        android:scaleY="0.4"
+        android:transformPivotX="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp" />
+    <it.mike5v.viewmoretextview.ViewMoreTextView
+        android:fontFamily="sans-serif-smallcaps"
+        android:textSize="14sp"
+        app:duration="200"
+
+        app:ellipsizeText="View More"
+        app:ellipsizeTextColor="#3949AB"
+        app:isExpanded="false"
+        app:visibleLines="2"
+        android:paddingStart="20dp"
+        android:layout_below="@id/review_rating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/review_content_text"/>
+    <View
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_below="@id/review_content_text"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#545A60"/>
 
 </RelativeLayout>

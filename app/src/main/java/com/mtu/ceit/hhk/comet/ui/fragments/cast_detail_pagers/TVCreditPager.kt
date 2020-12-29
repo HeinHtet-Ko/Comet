@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.mtu.ceit.hhk.comet.DetailedCastActivity
+import com.mtu.ceit.hhk.comet.ui.DetailedCastActivity
 import com.mtu.ceit.hhk.comet.R
 import com.mtu.ceit.hhk.comet.databinding.FragmentCastinfoBinding
 import com.mtu.ceit.hhk.comet.databinding.FragmentTvCreditsBinding

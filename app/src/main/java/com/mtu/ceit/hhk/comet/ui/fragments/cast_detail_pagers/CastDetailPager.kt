@@ -2,18 +2,16 @@ package com.mtu.ceit.hhk.comet.ui.fragments.cast_detail_pagers
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.mtu.ceit.hhk.comet.DetailedCastActivity
+import com.mtu.ceit.hhk.comet.ui.DetailedCastActivity
 import com.mtu.ceit.hhk.comet.R
 import com.mtu.ceit.hhk.comet.data_models.PersonDetail
 import com.mtu.ceit.hhk.comet.databinding.FragmentCastinfoBinding
 import com.mtu.ceit.hhk.comet.ui.viewmodels.DetailedCastViewModel
 import com.mtu.ceit.hhk.comet.utils.Resource
 import kotlinx.coroutines.flow.collect
-import java.lang.Exception
 
 class CastDetailPager :Fragment(R.layout.fragment_castinfo){
 
@@ -72,9 +70,13 @@ class CastDetailPager :Fragment(R.layout.fragment_castinfo){
 
 
 
+               // Toast.makeText(requireContext(), person.biography+"hah", Toast.LENGTH_LONG).show()
 
-
-                castDetailBiography.text = person.biography
+                if(!person.biography.isNullOrEmpty() ){
+                    castDetailBiography.text = person.biography
+                }else{
+                    biographyTitle.visibility = View.GONE
+                }
                 castDetailBirthPlace.append(person.place_of_birth ?: " ")
                 castDetailBornDate.append(person.birthday ?: " ")
                 if(person.deathday!=null){

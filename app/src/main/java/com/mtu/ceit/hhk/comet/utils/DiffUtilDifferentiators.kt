@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.DiffUtil
 import com.mtu.ceit.hhk.comet.data_models.Cast
 
 import com.mtu.ceit.hhk.comet.data_models.Movie
+import com.mtu.ceit.hhk.comet.data_models.Review
 import com.mtu.ceit.hhk.comet.data_models.TV
 
 class DiffUtilDifferentiators {
@@ -20,7 +21,15 @@ class DiffUtilDifferentiators {
 
         }
 
+        val ReviewDifferentiator  = object :DiffUtil.ItemCallback<Review>(){
+            override fun areItemsTheSame(oldItem: Review, newItem: Review): Boolean {
+                return oldItem.id == newItem.id
+            }
 
+            override fun areContentsTheSame(oldItem: Review, newItem: Review): Boolean {
+                return oldItem == newItem
+            }
+        }
 
         val CastDifferentiator = object :DiffUtil.ItemCallback<Cast> () {
             override fun areItemsTheSame(oldItem: Cast, newItem: Cast): Boolean {

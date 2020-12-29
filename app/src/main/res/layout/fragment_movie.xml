@@ -17,10 +17,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
            <LinearLayout
-               android:layout_marginTop="80dp"
+               android:layout_marginTop="50dp"
                android:layout_width="match_parent"
                android:layout_height="match_parent"
                android:orientation="vertical">
+               <View
+                   android:background="@color/shimmer_color"
+                   android:layout_width="100dp"
+                   android:layout_marginLeft="10dp"
+                   android:layout_height="30dp"/>
                <LinearLayout
                    android:id="@+id/nowPlayingShimmer"
                    android:layout_width="match_parent"
@@ -33,6 +38,11 @@
                    <include layout="@layout/shimmer_list"/>
 
                </LinearLayout>
+               <View
+                   android:background="@color/shimmer_color"
+                   android:layout_width="100dp"
+                   android:layout_marginLeft="10dp"
+                   android:layout_height="30dp"/>
                <LinearLayout
                    android:id="@+id/upComingShimmer"
                    android:layout_width="match_parent"
@@ -49,7 +59,7 @@
 
         <TextView
             android:id="@+id/nowText"
-
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
@@ -62,6 +72,7 @@
             android:textSize="18sp" />
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/popText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -5,19 +5,17 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.mtu.ceit.hhk.comet.DetailedCastActivity
+import com.mtu.ceit.hhk.comet.ui.DetailedCastActivity
 import com.mtu.ceit.hhk.comet.R
 import com.mtu.ceit.hhk.comet.databinding.FragmentCastinfoBinding
 import com.mtu.ceit.hhk.comet.databinding.FragmentMovieCreditsBinding
 import com.mtu.ceit.hhk.comet.databinding.FragmentTvCreditsBinding
 import com.mtu.ceit.hhk.comet.ui.adapters.NowMovieAdapter
-import com.mtu.ceit.hhk.comet.ui.adapters.TVAdapter
 import com.mtu.ceit.hhk.comet.ui.viewmodels.DetailedCastViewModel
 import com.mtu.ceit.hhk.comet.utils.DiffUtilDifferentiators
 import com.mtu.ceit.hhk.comet.utils.OnItemClickListener
 import com.mtu.ceit.hhk.comet.utils.Resource
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 
 class MovieCreditPager:Fragment(R.layout.fragment_movie_credits) , OnItemClickListener {
 
@@ -63,7 +61,7 @@ class MovieCreditPager:Fragment(R.layout.fragment_movie_credits) , OnItemClickLi
     }
     private fun recyclerSetUp(){
 
-        binding.haha.apply {
+        binding.movieCreditsRecycler.apply {
             adapter = _adapter
             setHasFixedSize(true)
         }

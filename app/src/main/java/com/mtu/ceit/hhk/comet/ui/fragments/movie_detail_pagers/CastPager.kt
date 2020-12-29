@@ -6,7 +6,7 @@ import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.mtu.ceit.hhk.comet.DetailedCastActivity
+import com.mtu.ceit.hhk.comet.ui.DetailedCastActivity
 import com.mtu.ceit.hhk.comet.R
 import com.mtu.ceit.hhk.comet.databinding.FragmentCastBinding
 import com.mtu.ceit.hhk.comet.ui.MovieDetailActivity
@@ -90,7 +90,7 @@ class CastPager:Fragment(R.layout.fragment_cast) , OnItemClickListener {
 
     override fun onItemClick(itemID: Int) {
 
-        val intent = Intent(requireContext(),DetailedCastActivity::class.java)
+        val intent = Intent(requireContext(), DetailedCastActivity::class.java)
         intent.putExtra("cast_id",itemID)
         Log.d("ITEMID", ": $itemID")
         startActivity(intent)

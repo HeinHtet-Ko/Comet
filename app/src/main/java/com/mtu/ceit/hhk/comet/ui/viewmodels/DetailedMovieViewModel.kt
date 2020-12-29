@@ -43,14 +43,17 @@ class DetailedMovieViewModel @ViewModelInject constructor(
             when( val res = repository.getReviews(movID)) {
                 is Resource.Success -> {
                     reviewsFlow.value = res
+                    Log.d("REVIEWERER", " success fetchReviews: ${res.value.reviews}")
                 }
                 is Resource.ERROR -> {
 
                     reviewsFlow.value = Resource.ERROR(res.message)
+                    Log.d("REVIEWERER", "fetchReviews: message ${res.message}")
 
                 }
-                else -> {
-
+                is Resource.EMPTY -> {
+                    reviewsFlow.value = res
+                    Log.d("REVIEWERER", "fetchReviews: empty")
                 }
             }
         }

@@ -11,7 +11,7 @@ import com.mtu.ceit.hhk.comet.databinding.FragmentMovieSearchBinding
 import com.mtu.ceit.hhk.comet.ui.MainActivity
 import com.mtu.ceit.hhk.comet.ui.MovieDetailActivity
 import com.mtu.ceit.hhk.comet.ui.viewmodels.MediaSearchViewModel
-import com.mtu.ceit.hhk.comet.ui.SearchMoviePagingAdapter
+import com.mtu.ceit.hhk.comet.ui.adapters.paging_adapter.SearchMoviePagingAdapter
 import com.mtu.ceit.hhk.comet.utils.OnItemClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,7 +20,7 @@ class MovieSearchPager:Fragment(R.layout.fragment_movie_search),OnItemClickListe
 
     private var _binding:FragmentMovieSearchBinding ?= null
     private val binding: FragmentMovieSearchBinding get() = _binding!!
-    private lateinit var _adapter:SearchMoviePagingAdapter
+    private lateinit var _adapter: SearchMoviePagingAdapter
 
 
     private lateinit var searchVM: MediaSearchViewModel

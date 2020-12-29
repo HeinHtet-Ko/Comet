@@ -1,4 +1,4 @@
-package com.mtu.ceit.hhk.comet.ui.fragments
+package com.mtu.ceit.hhk.comet.ui.adapters.paging_adapter
 
 import android.view.View
 import androidx.fragment.app.Fragment

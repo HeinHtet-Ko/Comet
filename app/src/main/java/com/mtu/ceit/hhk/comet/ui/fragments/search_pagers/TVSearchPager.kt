@@ -9,7 +9,7 @@ import com.mtu.ceit.hhk.comet.R
 import com.mtu.ceit.hhk.comet.databinding.FragmentTvSearchBinding
 import com.mtu.ceit.hhk.comet.ui.MainActivity
 import com.mtu.ceit.hhk.comet.ui.viewmodels.MediaSearchViewModel
-import com.mtu.ceit.hhk.comet.ui.SearchTVPagingAdapter
+import com.mtu.ceit.hhk.comet.ui.adapters.paging_adapter.SearchTVPagingAdapter
 import com.mtu.ceit.hhk.comet.utils.OnItemClickListener
 
 
@@ -20,7 +20,7 @@ class TVSearchPager:Fragment(R.layout.fragment_tv_search),OnItemClickListener{
     private var _binding:FragmentTvSearchBinding ?=null
     private val binding get() = _binding!!
 
-    private lateinit var _adapter:SearchTVPagingAdapter
+    private lateinit var _adapter: SearchTVPagingAdapter
 
     private lateinit var searchVM: MediaSearchViewModel
 

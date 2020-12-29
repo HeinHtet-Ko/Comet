@@ -47,8 +47,15 @@ class DetailedMovieRepository @Inject constructor(private val api:TMDB_API) {
     {
         return try {
             val results = api.getMovieReviews(movId)
-            Resource.Success(results)
+
+            if(results.reviews.isNotEmpty()){
+                Resource.Success(results)
+            }else{
+                Resource.EMPTY
+            }
+
         }catch (e:Exception){
+            Log.d("REVIEWER", "getReviews: ${e}")
             Resource.ERROR(e.message!!)
         }
 

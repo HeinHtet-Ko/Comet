@@ -1,4 +1,4 @@
-package com.mtu.ceit.hhk.comet.ui
+package com.mtu.ceit.hhk.comet.ui.adapters.paging_adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

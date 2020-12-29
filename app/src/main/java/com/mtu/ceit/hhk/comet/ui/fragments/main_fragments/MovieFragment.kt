@@ -75,6 +75,8 @@ class MovieFragment:Fragment(R.layout.fragment_movie),OnItemClickListener {
                      binding.apply {
                          shimmerMovieList.stopShimmer()
                          shimmerMovieList.visibility = View.GONE
+                         binding.nowText.visibility = View.VISIBLE
+                         binding.popText.visibility = View.VISIBLE
                      }
 
                      _adapter.submitList(it.value.movies)

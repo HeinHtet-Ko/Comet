@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/comet"
     app:layoutDescription="@xml/activity_detailed_cast_scene"
-    tools:context=".DetailedCastActivity">
+    tools:context=".ui.DetailedCastActivity">
 
     <com.google.android.material.appbar.AppBarLayout
 

@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.mtu.ceit.hhk.comet.BuildConfig
+
 import com.mtu.ceit.hhk.comet.data_models.Movie
 import com.mtu.ceit.hhk.comet.data_models.MovieResponse
 import com.mtu.ceit.hhk.comet.data_models.TVResponse

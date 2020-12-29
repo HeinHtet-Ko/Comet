@@ -70,4 +70,8 @@ interface TMDB_API {
 
     @GET("3/tv/popular")
     suspend fun getTVPopular(@Query("api_key")key : String =BuildConfig.TMDB_KEY):TVResponse
+
+    @GET("3/tv/{tv_id}")
+    suspend fun getDetailedTV(@Path("tv_id") tv_id:Int ,
+                              @Query("api_key")key : String =BuildConfig.TMDB_KEY):DetailedTV
 }

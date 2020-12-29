@@ -8,7 +8,7 @@ import com.mtu.ceit.hhk.comet.R
 import com.mtu.ceit.hhk.comet.databinding.FragmentSearchBinding
 import com.mtu.ceit.hhk.comet.ui.MainActivity
 import com.mtu.ceit.hhk.comet.ui.viewmodels.MediaSearchViewModel
-import com.mtu.ceit.hhk.comet.ui.fragments.MediaPagerAdapter
+import com.mtu.ceit.hhk.comet.ui.adapters.paging_adapter.MediaPagerAdapter
 import com.mtu.ceit.hhk.comet.ui.fragments.search_pagers.MovieSearchPager
 import com.mtu.ceit.hhk.comet.ui.fragments.search_pagers.TVSearchPager
 import dagger.hilt.android.AndroidEntryPoint
