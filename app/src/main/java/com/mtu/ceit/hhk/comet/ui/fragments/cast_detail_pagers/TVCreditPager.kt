@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.mtu.ceit.hhk.comet.ui.DetailedCastActivity
 import com.mtu.ceit.hhk.comet.R
 import com.mtu.ceit.hhk.comet.databinding.FragmentCastinfoBinding
@@ -15,6 +17,7 @@ import com.mtu.ceit.hhk.comet.utils.DiffUtilDifferentiators
 import com.mtu.ceit.hhk.comet.utils.OnItemClickListener
 import com.mtu.ceit.hhk.comet.utils.Resource
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class TVCreditPager:Fragment(R.layout.fragment_tv_credits) , OnItemClickListener {
 
@@ -36,17 +39,20 @@ class TVCreditPager:Fragment(R.layout.fragment_tv_credits) , OnItemClickListener
 
     }
     private fun collectTVCredits(){
-        lifecycleScope.launchWhenCreated {
-            castVM.tvCreditsFlow.collect {
-                        when(it) {
-                            is Resource.Success -> {
-                                _adapter.submitList(it.value.credits)
-                            }
-                            is Resource.ERROR -> {
-                                Toast.makeText(requireContext(), "Something happened try again", Toast.LENGTH_SHORT).show()
-                            }
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED){
+                castVM.tvCreditsFlow.collect {
+                    when(it) {
+                        is Resource.Success -> {
+                            _adapter.submitList(it.value.credits)
                         }
+                        is Resource.ERROR -> {
+                            Toast.makeText(requireContext(), "Something happened try again", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
             }
+
         }
     }
     private fun recyclerSetUp(){

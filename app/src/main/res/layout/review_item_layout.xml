@@ -18,32 +18,20 @@
 
     </TextView>
 
-    <com.idlestar.ratingstar.RatingStarView
-        android:id="@+id/review_rating"
+    <me.zhanghai.android.materialratingbar.MaterialRatingBar
+        android:layout_alignStart="@id/review_author_name"
         android:layout_below="@id/review_author_name"
-        app:rsv_cornerRadius="4dp"
-        app:rsv_starMargin="4dp"
-        app:rsv_strokeWidth="2px"
-        app:rsv_strokeColor="#457DD7"
-        app:rsv_starForegroundColor="@color/purple_700"
-        app:rsv_starBackgroundColor="@color/white"
-        app:rsv_starNum="5"
-        android:layout_marginStart="20dp"
-        app:rsv_rating="1"
-        app:rsv_onlyHalfStar="true"
-        app:rsv_enableSelectRating="true"
-        app:rsv_starThickness="0.5"
-        android:layout_marginTop="8dp"
-        app:rsv_drawStrokeForEmptyStar="false"
-        app:rsv_drawStrokeForHalfStar="true"
-        android:paddingTop="2dp"
-        android:paddingLeft="0dp"
-        android:paddingRight="0dp"
-        android:scaleX="0.4"
-        android:scaleY="0.4"
-        android:transformPivotX="0dp"
         android:layout_width="wrap_content"
-        android:layout_height="40dp" />
+        android:id="@+id/review_rating"
+        android:layout_height="wrap_content"
+        android:isIndicator="true"
+        android:numStars="10"
+        android:progressTint="#4E85B3"
+        android:maxHeight="20dp"
+        android:maxWidth="20dp"
+        style="@style/Widget.MaterialRatingBar.RatingBar" />
+
+
     <it.mike5v.viewmoretextview.ViewMoreTextView
         android:fontFamily="sans-serif-smallcaps"
         android:textSize="14sp"

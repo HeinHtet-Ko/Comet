@@ -1,7 +1,5 @@
 package com.mtu.ceit.hhk.comet.ui.viewmodels
 
-import android.util.Log
-import android.widget.Toast
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import androidx.paging.*
@@ -17,6 +15,7 @@ class MediaSearchViewModel @ViewModelInject constructor(private val repos:MediaS
 
      var currentQuery:MutableLiveData<String> = MutableLiveData()
 
+    var isFirstSearch :MutableLiveData<Boolean> = MutableLiveData(true)
 
 
     var moviePages = currentQuery.switchMap {
@@ -27,5 +26,6 @@ class MediaSearchViewModel @ViewModelInject constructor(private val repos:MediaS
     var tvPages = currentQuery.switchMap {
         repos.fetchTVSearch(it).cachedIn(viewModelScope)
     }
+
 
 }

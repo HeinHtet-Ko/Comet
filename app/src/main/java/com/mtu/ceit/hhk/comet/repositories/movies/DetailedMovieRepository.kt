@@ -1,6 +1,7 @@
 package com.mtu.ceit.hhk.comet.repositories.movies
 
 import android.util.Log
+import com.mtu.ceit.hhk.comet.data_models.DetailedMovie
 import com.mtu.ceit.hhk.comet.data_models.ReviewResult
 import com.mtu.ceit.hhk.comet.network.TMDB_API
 import com.mtu.ceit.hhk.comet.utils.Resource
@@ -10,12 +11,12 @@ import javax.inject.Inject
 
 class DetailedMovieRepository @Inject constructor(private val api:TMDB_API) {
 
-    suspend fun<T> getDetailedMovie(id:Int):Resource<T>
+    suspend fun<T> getDetailedMovie(id:Int):Resource<DetailedMovie>
     {
 
        return try {
 
-           Resource.Success(api.getDetailedMovie(id) as T)
+           Resource.Success(api.getDetailedMovie(id))
 
         }catch (e:Exception){
 
@@ -43,19 +44,19 @@ class DetailedMovieRepository @Inject constructor(private val api:TMDB_API) {
 
     }
 
-    suspend fun getReviews(movId: Int):Resource<ReviewResult>
+    suspend fun<R> getReviews(movId: Int):Resource<R>
     {
         return try {
             val results = api.getMovieReviews(movId)
 
             if(results.reviews.isNotEmpty()){
-                Resource.Success(results)
+                Resource.Success(results as R)
             }else{
                 Resource.EMPTY
             }
 
         }catch (e:Exception){
-            Log.d("REVIEWER", "getReviews: ${e}")
+
             Resource.ERROR(e.message!!)
         }
 

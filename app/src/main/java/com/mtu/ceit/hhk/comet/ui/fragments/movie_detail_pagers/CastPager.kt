@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.mtu.ceit.hhk.comet.ui.DetailedCastActivity
 import com.mtu.ceit.hhk.comet.R
 import com.mtu.ceit.hhk.comet.databinding.FragmentCastBinding
@@ -17,6 +19,7 @@ import com.mtu.ceit.hhk.comet.utils.OnItemClickListener
 import com.mtu.ceit.hhk.comet.utils.Resource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class CastPager:Fragment(R.layout.fragment_cast) , OnItemClickListener {
 
@@ -37,7 +40,11 @@ class CastPager:Fragment(R.layout.fragment_cast) , OnItemClickListener {
 
         castRecyclerSetUp()
 
-        collectCast()
+       lifecycleScope.launch {
+           lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED){
+               collectCast()
+           }
+       }
 
     }
 
@@ -64,8 +71,8 @@ class CastPager:Fragment(R.layout.fragment_cast) , OnItemClickListener {
 
     }
 
-    private  fun collectCast(){
-        lifecycleScope.launchWhenCreated {
+    private suspend fun collectCast(){
+
             movieDetailVM.creditsFlow.collect {
 
                 when(it) {
@@ -83,7 +90,7 @@ class CastPager:Fragment(R.layout.fragment_cast) , OnItemClickListener {
 
                 }
 
-            }
+
         }
 
     }
@@ -92,7 +99,6 @@ class CastPager:Fragment(R.layout.fragment_cast) , OnItemClickListener {
 
         val intent = Intent(requireContext(), DetailedCastActivity::class.java)
         intent.putExtra("cast_id",itemID)
-        Log.d("ITEMID", ": $itemID")
         startActivity(intent)
 
     }

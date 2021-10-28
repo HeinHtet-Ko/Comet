@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-     val mainSearchVM: MediaSearchViewModel by viewModels()
+    // val mainSearchVM: MediaSearchViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,10 +28,6 @@ class MainActivity : AppCompatActivity() {
         val controller = findNavController(R.id.fragmentContainerView)
         val bv = findViewById<BottomNavigationView>(R.id.bottom_nv)
         bv.setupWithNavController(controller)
-
-
-
-
 
 
     }

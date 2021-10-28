@@ -22,6 +22,7 @@ class SearchMoviePagingSource(private val api:TMDB_API,private val query:String)
             val movList = movResponse.movies
             Log.d("flatmap", "load: ${movList.size.toString()}")
 
+
             LoadResult.Page(
                     data = movResponse.movies,
                     prevKey = if(position== 1) null else position-1,

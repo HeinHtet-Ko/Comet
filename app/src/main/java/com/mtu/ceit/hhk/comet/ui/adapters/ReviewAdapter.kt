@@ -4,15 +4,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mtu.ceit.hhk.comet.data_models.Review
 import com.mtu.ceit.hhk.comet.databinding.ReviewItemLayoutBinding
+import kotlin.math.roundToInt
 
 class ReviewAdapter(diff:DiffUtil.ItemCallback<Review>): ListAdapter<Review, ReviewAdapter.ReviewHolder>(diff) {
 
-    inner class ReviewHolder(val itemBinding:ReviewItemLayoutBinding) :RecyclerView.ViewHolder(itemBinding.root){
+    inner class ReviewHolder(private val itemBinding:ReviewItemLayoutBinding) :RecyclerView.ViewHolder(itemBinding.root){
 
         init {
             itemBinding.reviewContentText.setOnClickListener {
@@ -21,16 +23,23 @@ class ReviewAdapter(diff:DiffUtil.ItemCallback<Review>): ListAdapter<Review, Rev
         }
         fun bindViews(review:Review){
 
-            itemBinding.reviewAuthorName.append(review.author)
+            itemBinding.reviewAuthorName.text = (review.author)
             itemBinding.reviewContentText.text= review.content
 
 
             if(review.author_details.rating!=null){
-                val fr = (review.author_details.rating / 2).toFloat()
+
+
+                val fr = (review.author_details.rating.toFloat() / 2)
+
+                Log.d("bveog", "bindViews: $fr")
+               // Toast.makeText(itemView.context,fr.toString(),Toast.LENGTH_LONG)
                 itemBinding.reviewAuthorName.append(review.author_details.rating.toString())
-               itemBinding.reviewRating.rating = fr
+               itemBinding.reviewRating.rating = fr.roundToInt().toFloat()
+
             }else{
                 itemBinding.reviewRating.visibility = View.GONE
+
             }
 
         }

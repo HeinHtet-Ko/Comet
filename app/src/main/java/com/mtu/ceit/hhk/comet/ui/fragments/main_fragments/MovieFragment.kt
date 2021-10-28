@@ -6,7 +6,9 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.navGraphViewModels
 import com.mtu.ceit.hhk.comet.R
 import com.mtu.ceit.hhk.comet.databinding.FragmentMovieBinding
@@ -45,15 +47,26 @@ class MovieFragment:Fragment(R.layout.fragment_movie),OnItemClickListener {
 
         _binding = FragmentMovieBinding.bind(view)
         recyclerSetup()
-        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-
-            collectupComing()
-        }
-        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            collectFlow()
-        }
-
         binding.shimmerMovieList.startShimmer()
+        viewLifecycleOwner.lifecycleScope.launch {
+
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED){
+
+                launch {
+                    collectupComing()
+                }
+                launch {
+                    collectnowPlaying()
+                }
+
+
+            }
+
+
+        }
+
+
+
     }
 
     private fun recyclerSetup(){
@@ -66,7 +79,7 @@ class MovieFragment:Fragment(R.layout.fragment_movie),OnItemClickListener {
     }
 
 
-     private suspend fun collectFlow(){
+     private suspend fun collectnowPlaying(){
 
          mainVM.nowPlayingMovs.collect {
              when(it){
@@ -124,8 +137,8 @@ class MovieFragment:Fragment(R.layout.fragment_movie),OnItemClickListener {
 
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
     }
 
@@ -133,7 +146,6 @@ class MovieFragment:Fragment(R.layout.fragment_movie),OnItemClickListener {
 
 
         Toast.makeText(requireContext(), movieID.toString(), Toast.LENGTH_SHORT).show()
-    //  val options =   ActivityOptionsCompat.makeSceneTransitionAnimation(requireActivity(),binding.nowPlayingRecycler.rootView,"movie")
         val intent = MovieDetailActivity.navigate(requireContext(),movieID)
         startActivity(intent)
     }

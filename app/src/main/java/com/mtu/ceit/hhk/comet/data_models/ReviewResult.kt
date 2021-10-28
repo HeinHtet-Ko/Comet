@@ -21,5 +21,5 @@ data class Review(
 )
 data class AuthorDetail(
         @Expose
-        val rating:Int?
+        val rating:Number?
 )

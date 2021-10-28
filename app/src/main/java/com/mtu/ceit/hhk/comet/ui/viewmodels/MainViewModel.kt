@@ -84,7 +84,7 @@ private val reposTVs:TVRepository):ViewModel() {
         viewModelScope.launch {
             upComingMovs.value = (Resource.LOADING)
 
-            when(val resources =  reposMovs.getComingMovies<MovieResponse>()){
+            when(val resources =  reposMovs.getComingMovies()){
                 is Resource.Success ->{
                     upComingMovs.value = (resources)
                 }

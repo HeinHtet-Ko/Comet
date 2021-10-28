@@ -2,10 +2,14 @@ package com.mtu.ceit.hhk.comet.ui.fragments.search_pagers
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.paging.LoadState
+import com.google.android.material.snackbar.Snackbar
 import com.mtu.ceit.hhk.comet.R
 import com.mtu.ceit.hhk.comet.databinding.FragmentMovieSearchBinding
 import com.mtu.ceit.hhk.comet.ui.MainActivity
@@ -23,7 +27,7 @@ class MovieSearchPager:Fragment(R.layout.fragment_movie_search),OnItemClickListe
     private lateinit var _adapter: SearchMoviePagingAdapter
 
 
-    private lateinit var searchVM: MediaSearchViewModel
+    private val searchVM: MediaSearchViewModel by activityViewModels()
 
 
 
@@ -33,25 +37,46 @@ class MovieSearchPager:Fragment(R.layout.fragment_movie_search),OnItemClickListe
         _binding = FragmentMovieSearchBinding.bind(view)
         _adapter = SearchMoviePagingAdapter(this)
 
+
         binding.apply {
 
             searchMovieRecycler.adapter = _adapter
+            searchMovieRecycler.itemAnimator = null
 
         }
 
-        searchVM = (activity as MainActivity).mainSearchVM
+       // searchVM = (activity as MainActivity).mainSearchVM
+
+
+        searchVM.isFirstSearch.observe(viewLifecycleOwner){
+            binding.firstSearch!!.isVisible = it
+        }
 
         _adapter.addLoadStateListener {
 
             if(it.refresh is LoadState.Loading){
+
                 binding.searchMovieRecycler.visibility = View.GONE
                 binding.wpLdView.visibility = View.VISIBLE
+                binding.empText!!.visibility = View.GONE
             }else{
                 binding.wpLdView.visibility = View.GONE
                 binding.searchMovieRecycler.visibility = View.VISIBLE
 
+                binding.empText!!.isVisible = it.source.refresh is LoadState.NotLoading && _adapter.itemCount<1 && it.append.endOfPaginationReached
+
             }
+
+
+
+
+                       Log.d("veppo", "onViewCreated: ${_adapter.itemCount==0}")
+
+
         }
+
+
+
 
 
     }
@@ -65,6 +90,8 @@ class MovieSearchPager:Fragment(R.layout.fragment_movie_search),OnItemClickListe
             _adapter.submitData(viewLifecycleOwner.lifecycle,it)
 
         }
+
+
     }
 
 
@@ -75,8 +102,8 @@ class MovieSearchPager:Fragment(R.layout.fragment_movie_search),OnItemClickListe
         startActivity(intent)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding=null
     }
 

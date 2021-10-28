@@ -3,7 +3,9 @@ package com.mtu.ceit.hhk.comet.ui.fragments.main_fragments
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.navGraphViewModels
 import com.mtu.ceit.hhk.comet.R
 import com.mtu.ceit.hhk.comet.databinding.FragmentTvBinding
@@ -14,6 +16,7 @@ import com.mtu.ceit.hhk.comet.utils.DiffUtilDifferentiators
 import com.mtu.ceit.hhk.comet.utils.OnItemClickListener
 import com.mtu.ceit.hhk.comet.utils.Resource
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 
 class TVFragment:Fragment(R.layout.fragment_tv) , OnItemClickListener {
@@ -37,39 +40,56 @@ class TVFragment:Fragment(R.layout.fragment_tv) , OnItemClickListener {
 
         recyclerSet()
 
-        collectOTA()
-        collectPopular()
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+
+                launch {
+                   collectOTA()
+                }
+                launch {
+                    collectPopular()
+                }
+
+
+
+            }
+
+        }
+
+
+
 
 
     }
 
-     fun collectOTA(){
-        lifecycleScope.launchWhenCreated {
+     suspend fun collectOTA(){
 
-            mainVM.otaTVs.collect {
-                when(it) {
 
-                    is Resource.Success -> {
-                        binding.shimmerMovieList.stopShimmer()
-                        binding.otaShimmer.visibility = View.GONE
-                        binding.airShimmer.visibility = View.GONE
-                        _adapterOTA.submitList(it.value.tvs)
-                    }
-                    is Resource.ERROR -> {
+             mainVM.otaTVs.collect {
+                 when(it) {
 
-                    }
-                    else -> {
+                     is Resource.Success -> {
+                         binding.shimmerMovieList.stopShimmer()
+                         binding.otaShimmer.visibility = View.GONE
+                         binding.airShimmer.visibility = View.GONE
+                         _adapterOTA.submitList(it.value.tvs)
+                     }
+                     is Resource.ERROR -> {
 
-                    }
+                     }
+                     else -> {
 
-                }
-            }
+                     }
+
+                 }
+
+
 
         }
     }
 
-     fun collectPopular(){
-        lifecycleScope.launchWhenCreated {
+     suspend fun collectPopular(){
+
 
             mainVM.popularTVs.collect {
                 when(it) {
@@ -88,7 +108,7 @@ class TVFragment:Fragment(R.layout.fragment_tv) , OnItemClickListener {
                     }
 
                 }
-            }
+
 
         }
     }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.paging.LoadState
 import com.mtu.ceit.hhk.comet.R
 import com.mtu.ceit.hhk.comet.databinding.FragmentTvSearchBinding
@@ -22,14 +23,14 @@ class TVSearchPager:Fragment(R.layout.fragment_tv_search),OnItemClickListener{
 
     private lateinit var _adapter: SearchTVPagingAdapter
 
-    private lateinit var searchVM: MediaSearchViewModel
+    private val searchVM: MediaSearchViewModel by activityViewModels()
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentTvSearchBinding.bind(view)
 
-        searchVM = (activity as MainActivity).mainSearchVM
+        //searchVM = (activity as MainActivity).mainSearchVM
 
         _adapter = SearchTVPagingAdapter(this)
 
@@ -41,6 +42,7 @@ class TVSearchPager:Fragment(R.layout.fragment_tv_search),OnItemClickListener{
         binding.apply {
 
             searchTvRecycler.adapter = _adapter
+            searchTvRecycler.itemAnimator = null
             searchTvRecycler.setHasFixedSize(true)
         }
 
@@ -60,6 +62,9 @@ class TVSearchPager:Fragment(R.layout.fragment_tv_search),OnItemClickListener{
                 binding.searchTvRecycler.visibility = View.VISIBLE
 
             }
+
+
+
         }
     }
 

@@ -1,5 +1,6 @@
 package com.mtu.ceit.hhk.comet.repositories.movies
 
+import com.mtu.ceit.hhk.comet.data_models.MovieResponse
 import com.mtu.ceit.hhk.comet.network.TMDB_API
 import com.mtu.ceit.hhk.comet.utils.Resource
 import java.lang.Exception
@@ -22,13 +23,13 @@ class MovieRepository @Inject constructor(private val api:TMDB_API) {
         }
     }
 
-    suspend fun<T> getComingMovies():Resource<T>
+    suspend fun getComingMovies():Resource<MovieResponse>
     {
 
         return try {
 
 
-            Resource.Success(api.getComingMovies() as T)
+            Resource.Success(api.getComingMovies())
 
         }catch (e:Exception){
 

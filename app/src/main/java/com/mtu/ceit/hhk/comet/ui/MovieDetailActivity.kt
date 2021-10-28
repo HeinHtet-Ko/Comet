@@ -108,6 +108,8 @@ class MovieDetailActivity : AppCompatActivity() {
                     }
                     else -> {
 
+
+
                     }
                 }
             }

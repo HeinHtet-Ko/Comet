@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.mtu.ceit.hhk.comet.ui.DetailedCastActivity
 import com.mtu.ceit.hhk.comet.R
 import com.mtu.ceit.hhk.comet.data_models.PersonDetail
@@ -12,6 +14,7 @@ import com.mtu.ceit.hhk.comet.databinding.FragmentCastinfoBinding
 import com.mtu.ceit.hhk.comet.ui.viewmodels.DetailedCastViewModel
 import com.mtu.ceit.hhk.comet.utils.Resource
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class CastDetailPager :Fragment(R.layout.fragment_castinfo){
 
@@ -36,21 +39,25 @@ class CastDetailPager :Fragment(R.layout.fragment_castinfo){
 
     }
     private fun collectPersonInfo(){
-        lifecycleScope.launchWhenCreated {
+        lifecycleScope.launch {
 
-            castVM.personFlow.collect {
-                when(it) {
-                    is Resource.Success -> {
 
-                        person = it.value
-                        setPersonInfo(person)
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED){
+                castVM.personFlow.collect {
+                    when(it) {
+                        is Resource.Success -> {
 
-                    }
-                    else -> {
+                            person = it.value
+                            setPersonInfo(person)
 
+                        }
+                        else -> {
+
+                        }
                     }
                 }
             }
+
         }
     }
 

@@ -46,19 +46,21 @@ class DetailedCastActivity : AppCompatActivity() , OnItemClickListener {
 
         setUpPager()
 
-collectPersonInfo()
+        collectPersonInfo()
     }
 
     private fun collectPersonInfo(){
         lifecycleScope.launchWhenCreated {
+
+
 
             castVM.personFlow.collect {
                 when(it) {
                     is Resource.Success -> {
 
                         person = it.value
-                       binding.castShimmerLayout.stopShimmer()
-                       binding.shimmerCastItem.shimmerCastMain.visibility = View.GONE
+                        binding.castShimmerLayout.stopShimmer()
+                        binding.shimmerCastItem.shimmerCastMain.visibility = View.GONE
 
                         setPersonProfile(person)
 

@@ -1,6 +1,6 @@
 package com.mtu.ceit.hhk.comet.repositories.tv
 
-import com.mtu.ceit.hhk.comet.data_models.DetailedTV
+
 import com.mtu.ceit.hhk.comet.data_models.TVResponse
 import com.mtu.ceit.hhk.comet.network.TMDB_API
 import com.mtu.ceit.hhk.comet.utils.Resource

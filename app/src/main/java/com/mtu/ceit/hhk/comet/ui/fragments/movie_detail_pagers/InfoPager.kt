@@ -4,14 +4,18 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.mtu.ceit.hhk.comet.R
 import com.mtu.ceit.hhk.comet.data_models.DetailedMovie
 import com.mtu.ceit.hhk.comet.databinding.FragmentInfoBinding
 import com.mtu.ceit.hhk.comet.ui.MovieDetailActivity
 import com.mtu.ceit.hhk.comet.ui.viewmodels.DetailedMovieViewModel
 import com.mtu.ceit.hhk.comet.utils.Resource
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 
 class InfoPager:Fragment(R.layout.fragment_info) {
@@ -21,6 +25,7 @@ class InfoPager:Fragment(R.layout.fragment_info) {
     private val binding get() = _binding!!
     lateinit var detailedViewModel:DetailedMovieViewModel
 
+    @ExperimentalCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -36,8 +41,11 @@ class InfoPager:Fragment(R.layout.fragment_info) {
         detailedViewModel = (activity as MovieDetailActivity).detailedVM
 
 
-        lifecycleScope.launchWhenCreated {
-            collect()
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED){
+                collect()
+            }
+
         }
     }
 
@@ -57,7 +65,7 @@ class InfoPager:Fragment(R.layout.fragment_info) {
                         val detailedMovie = it.value
                         setUpMovieInfo(detailedMovie)
 
-                      //  binding.te1.append("${it.value.runtime} ${it.value.budget} ${it.value.revenue} ${it.value.release_date}")
+
                     }
                     else -> {
 

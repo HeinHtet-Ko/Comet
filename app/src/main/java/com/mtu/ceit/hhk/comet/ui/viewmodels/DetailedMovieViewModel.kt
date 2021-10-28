@@ -9,7 +9,9 @@ import com.mtu.ceit.hhk.comet.data_models.DetailedMovie
 import com.mtu.ceit.hhk.comet.data_models.ReviewResult
 import com.mtu.ceit.hhk.comet.repositories.movies.DetailedMovieRepository
 import com.mtu.ceit.hhk.comet.utils.Resource
+import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
@@ -26,7 +28,7 @@ class DetailedMovieViewModel @ViewModelInject constructor(
 
 
         val movID = savedStateHandle.get<Int>("movie_id")!!
-        viewModelScope.launch {
+        viewModelScope.launch (IO){
             fetchDetailedMovie(movID)
             fetchCredits(movID)
             fetchReviews(movID)
@@ -40,14 +42,17 @@ class DetailedMovieViewModel @ViewModelInject constructor(
 
         viewModelScope.launch {
 
-            when( val res = repository.getReviews(movID)) {
+            when( val res = repository.getReviews<ReviewResult>(movID)) {
                 is Resource.Success -> {
                     reviewsFlow.value = res
-                    Log.d("REVIEWERER", " success fetchReviews: ${res.value.reviews}")
+
+
+                    //Log.d("REVIEWERER", " success fetchReviews: ${res.value.reviews[0].author_details.rating}")
                 }
                 is Resource.ERROR -> {
 
                     reviewsFlow.value = Resource.ERROR(res.message)
+                   // Log.d("REVIEWERER", " success fetchReviews: ${res.value.reviews[0].author_details.rating}")
                     Log.d("REVIEWERER", "fetchReviews: message ${res.message}")
 
                 }
@@ -66,6 +71,7 @@ class DetailedMovieViewModel @ViewModelInject constructor(
         when(val resource = repository.getDetailedMovie<DetailedMovie>(movID)){
             is Resource.Success -> {
                 movieFlow.value = resource
+
             }
             is Resource.ERROR -> {
                 movieFlow.value = Resource.ERROR(resource.message)
@@ -82,15 +88,14 @@ class DetailedMovieViewModel @ViewModelInject constructor(
         when(val resource = repository.getCredits<Credits>(movID)){
             is Resource.Success -> {
                 creditsFlow.value = resource
+
             }
             is Resource.ERROR -> {
 
                 creditsFlow.value = Resource.ERROR(resource.message)
 
             }
-            else -> {
 
-            }
         }
 
     }
